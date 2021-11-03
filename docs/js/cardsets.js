@@ -1,6 +1,22 @@
+function format(cardsets) {
+    const out = [];
+
+    for (const set of cardsets) {
+        out.push({
+            "date": new Date(set["date"]).toLocaleDateString(),
+            "name": set["name"],
+        });
+    }
+
+    return out;
+}
+
 function load() {
     const table = document.createElement("TABLE");
     table.classList.add("table")
+
+    // cardsets is in cardsets-data.js
+    const sets = format(cardsets);
 
     const header = document.createElement("TR");
     const columns = ["Date", "Name"];
@@ -13,8 +29,7 @@ function load() {
     table.appendChild(header);
 
     const keys = ["date", "name"]
-     // cardsets is in cardsets-data.js
-     for (const cardset of cardsets) {
+     for (const cardset of sets) {
         const tr = document.createElement("TR");
         for (const key of keys) {
             const td = document.createElement("TD");
