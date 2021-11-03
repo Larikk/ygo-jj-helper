@@ -1,0 +1,16 @@
+.root-container {
+    display: flex;
+    flex-flow: column;
+    max-width: 960px;
+    margin: auto;
+    row-gap: 20px;
+    padding: 20px;
+}
+
+#ydk-input {
+    height: 400px;
+}
+
+#cards {
+    height: 600px;
+}
