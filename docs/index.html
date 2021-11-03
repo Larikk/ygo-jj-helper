@@ -38,7 +38,7 @@
             <button id="init-button" class="btn btn-primary" type="button" onclick="fetchCards()">Initialize</button>
         </div>
 
-        <div class="section" hidden="true">
+        <div class="section requires-initialization" hidden="true">
             <h2>Deck Validation</h2>
             Download the YDK file and paste its contents here.
             <textarea id="ydk-input" class="form-control mt-1 mb-3"></textarea>
@@ -46,7 +46,7 @@
             <p id="validation-result"></p>
         </div>
 
-        <div class="section" hidden="true">
+        <div class="section requires-initialization" hidden="true">
             <h2>Available Cards</h2>
             <input type="text" id="input-card-search" class="form-control mb-1" placeholder="Search by name" oninput="searchCards()">
             <textarea id="cards" class="form-control" readonly></textarea>

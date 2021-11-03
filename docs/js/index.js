@@ -86,6 +86,11 @@ function formatDate(date) {
     return new Date(date).toLocaleDateString("en-US");
 }
 
+function setSectionVisibility(isVisible) {
+    const sections = document.getElementsByClassName("requires-initialization");
+    Array.from(sections).forEach(s => s.hidden = !isVisible)
+}
+
 function setCards(d) {
     cards = []
     cardsLowerCased = []
@@ -103,12 +108,13 @@ function setCards(d) {
     cardsListItems = document.getElementById("cards").children;
     document.getElementById("init-button").disabled = false;
 
-    const sections = document.getElementsByClassName("section");
-    Array.from(sections).forEach(s => s.hidden = false)
+    setSectionVisibility(true);
 }
 
 function fetchCards() {
     document.getElementById("init-button").disabled = true;
+    setSectionVisibility(false);
+    document.getElementById("input-card-search").value = "";
     let startDate = document.getElementById("date-from").value;
     let endDate = document.getElementById("date-to").value;
 
