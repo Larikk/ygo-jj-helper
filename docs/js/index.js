@@ -23,7 +23,7 @@ function displayValidationResult(lines, status) {
 }
 
 function displayIllegalCards(cards) {
-    const msg = "These cards are not legal in this time range:";
+    const msg = "These cards are not legal for the selected format:";
 
     cards = cards.map(c => c.name);
 
@@ -86,6 +86,10 @@ function formatDate(date) {
     return new Date(date).toLocaleDateString("en-US");
 }
 
+function getCurrentYear() {
+    return new Date().getFullYear();;
+}
+
 function setSectionVisibility(isVisible) {
     const sections = document.getElementsByClassName("requires-initialization");
     Array.from(sections).forEach(s => s.hidden = !isVisible)
@@ -115,21 +119,15 @@ function fetchCards() {
     document.getElementById("init-button").disabled = true;
     setSectionVisibility(false);
     document.getElementById("input-card-search").value = "";
-    let startDate = document.getElementById("date-from").value;
-    let endDate = document.getElementById("date-to").value;
+
+    const year = document.getElementById("year-selection").value;
 
     const params = new URLSearchParams();
 
     // Only add the date params if one of the dates is set
-    if (startDate || endDate) {
-        startDate = startDate || "1990-01-01";
-        endDate = endDate || "2100-12-31";
-
-        if (startDate > endDate) {
-            alert("Start date must be after the end date");
-            document.getElementById("init-button").disabled = false;
-            return;
-        }
+    if (year != getCurrentYear()) {
+        const startDate = "2000-01-01";
+        const endDate = year + "-12-31";
 
         params.append("startdate", formatDate(startDate));
         params.append("enddate", formatDate(endDate));
@@ -141,3 +139,20 @@ function fetchCards() {
         .then(r => r.json())
         .then(body => setCards(body.data));
 }
+
+function initYearSelection() {
+    const currentYear = getCurrentYear();
+    const yearSelect = document.getElementById("year-selection");
+
+    // 2002 is already in the select element
+    for (let i = 2002; i <= currentYear; i++) {
+        const option = document.createElement("OPTION");
+        option.value = i;
+        option.textContent = i;
+        yearSelect.appendChild(option);
+    }
+
+    yearSelect.children[0].selected = true;
+}
+
+window.addEventListener("load", () => initYearSelection());
