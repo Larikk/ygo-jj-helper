@@ -119,6 +119,7 @@ function fetchCards() {
     document.getElementById("init-button").disabled = true;
     setSectionVisibility(false);
     document.getElementById("input-card-search").value = "";
+    displayValidationResult([], v.NEUTRAL); // clear
 
     const year = document.getElementById("year-selection").value;
 
