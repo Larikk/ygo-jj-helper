@@ -7,10 +7,25 @@
     padding: 20px;
 }
 
+p {
+    margin: 5px 0px;
+}
+
 #ydk-input {
     height: 400px;
 }
 
 #cards {
     height: 600px;
+}
+
+.year-selection-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0px;
+}
+
+#year-selection {
+    max-width: 200px;
 }

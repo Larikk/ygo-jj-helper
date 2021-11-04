@@ -18,23 +18,15 @@
     <div class="root-container">
         <div class="section">
             <h1>YGO Junior Journey Helper</h1>
-            Validates your deck and lists all released cards for any given time frame.
-            <p>
-                Start and end dates are both optional.
-                Omitting the start date downloads all cards that were released until the end date.
-                Omitting the end date downloads all cards that were released from the start day to today.
-                Omitting both downloads all cards.
-            </p>
-            <p>You can use this <a href="./cardsets.html">timeline</a> if you want to know which releases are available at a given time frame.</p>
+            <p>Validates your deck and lists all cards that were released up until the end of the selected year.</p>
+
+            <div class="year-selection-container">
+                Select the year: 
+                <select id="year-selection" class="form-select" aria-label="Year selection"></select>
+            </div>
+
+            <p>You can use this <a href="./cardsets.html">timeline</a> for an overview of the dates of card set releases.</p>
             <p>This utility is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Start Date</span>
-                <input type="date" id="date-from" class="form-control">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">End Date</span>
-                <input type="date" id="date-to" class="form-control">
-            </div>
             <button id="init-button" class="btn btn-primary" type="button" onclick="fetchCards()">Initialize</button>
         </div>
 
