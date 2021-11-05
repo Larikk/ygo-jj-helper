@@ -20,7 +20,7 @@ for c in cardsets:
 
 entries = sorted(entries, key=lambda e: e["date"])
 
-with open("public/js/cardsets-data.js", "w") as f:
+with open("docs/js/cardsets-data.js", "w") as f:
     s = "const cardsets = "
     s += json.dumps(entries, indent=4)
     s += "\n"
