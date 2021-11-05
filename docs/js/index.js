@@ -105,7 +105,11 @@ function setCards(d) {
         const name = card.name;
         cards[i] = name;
         cardsLowerCased[i] = name.toLowerCase();
-        cardIdMapping[card.id] = name;
+
+        for (let j = 0; j < card.card_images.length; j++) {
+            const id = card.card_images[j].id;
+            cardIdMapping[id] = name;
+        }
     }
 
     displayCards(cards);
