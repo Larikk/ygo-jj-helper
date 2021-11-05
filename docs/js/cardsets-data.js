@@ -3490,5 +3490,9 @@ const cardsets = [
     {
         "date": "2021-10-21",
         "name": "Burst of Destiny"
+    },
+    {
+        "date": "2021-11-18",
+        "name": "Maximum Gold: El Dorado"
     }
 ]
