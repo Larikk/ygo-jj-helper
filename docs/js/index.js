@@ -128,6 +128,7 @@ function fetchCards() {
     const year = document.getElementById("year-selection").value;
 
     const params = new URLSearchParams();
+    params.append("format", "tcg");
 
     // Only add the date params if one of the dates is set
     if (year != getCurrentYear()) {
