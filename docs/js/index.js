@@ -1,39 +1,79 @@
-let cards = []
-let cardsLowerCased = [] // used for more efficient searching
-let cardIdMapping = {} // used for ydk validation
+let selectedYear = null
+let legalCardsForAllYears = {} // used for ydk validation
 
-// Validation result
-let v = {
-    NEUTRAL : 0,
-    SUCCESS : 1,
-    FAILURE : 2,
+// Some constants for validation
+const NEUTRAL = 0;
+const SUCCESS = 1;
+const FAILURE = 2;
+
+async function alertFetchError(msg, url, response) {
+    msg = [msg, url, (await response.text())].join("\n\n");
+    alert(msg);
 }
 
-function displayValidationResult(lines, status) {
+function setYDKValidateButtonEnabled(enabled) {
+    document.getElementById("validate-ydk-button").disabled = !enabled;
+}
+
+
+function getCurrentYear() {
+    return new Date().getFullYear();;
+}
+
+function displayValidationResult(msg, status) {
     const output = document.getElementById("validation-result");
     output.classList.remove("text-success", "text-danger");
 
-    if (status == v.SUCCESS) {
+    if (status == SUCCESS) {
         output.classList.add("text-success");
-    } else if (status == v.FAILURE) {
+    } else if (status == FAILURE) {
         output.classList.add("text-danger");
-    }   
+    }
 
-    output.innerHTML = lines.join("<br>")
+    output.innerHTML = msg;
+    setYDKValidateButtonEnabled(true);
 }
 
-function displayIllegalCards(cards) {
-    const msg = "These cards are not legal for the selected format:";
+async function fetchLegalCards() {
+    const year = selectedYear;
 
-    cards = cards.map(c => c.name);
+    const params = new URLSearchParams();
+    params.append("format", "tcg");
 
-    const lines = [msg, ...cards]
+    // If year == currentYear we are just gonna request all  cards by not setting dates
+    if (year != getCurrentYear()) {
+        const startDate = "2000-01-01";
+        const endDate = year + "-12-31";
 
-    displayValidationResult(lines, v.FAILURE);
+        params.append("startdate", startDate);
+        params.append("enddate", endDate);
+    }
+
+    const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+    url.search = params.toString();
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        await alertFetchError("Could not fetch legal cards, send this to the dev.", url, response);
+        throw "Could not fetch legal cards";
+    }
+
+    const legalCardsForSelectedYear = new Set();
+    const json = await response.json();
+    const cards = json.data;
+    for (const card of cards) {
+        for (const cardVersion of card.card_images) {
+            legalCardsForSelectedYear.add(cardVersion.id);
+        }
+    }
+
+    legalCardsForAllYears[selectedYear] = legalCardsForSelectedYear;
 }
 
-function validateYdk() {
-    displayValidationResult(["Working on it..."], v.NEUTRAL)
+async function validateYdk() {
+    displayValidationResult("Working on it...", NEUTRAL);
+    setYDKValidateButtonEnabled(false);
+
     const ydk = document.getElementById("ydk-input").value;
 
     let ids = ydk.split("\n")
@@ -41,109 +81,79 @@ function validateYdk() {
         .filter(l => l.match("^[0-9]+$"))
         .map(n => +n);
 
-    
-    ids = [... new Set(ids)]
+    ids = [... new Set(ids)];
 
-    const illegalIds = ids.filter(n => !cardIdMapping[n]);
-
-    if (illegalIds.length == 0) {
-        displayValidationResult(["No illegal cards found."], v.SUCCESS)
+    if (ids.length == 0) {
+        displayValidationResult("No card ids were found.", FAILURE);
         return;
     }
 
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + illegalIds.join(","))
-        .then(r => r.json())
-        .then(data => displayIllegalCards(data.data))
-}
-
-function displayCards(cards) {
-    const cardsDisplay = document.getElementById("cards");
-    cardsDisplay.value = cards.join("\n");
-}
-
-
-function searchCards() {
-    const searchTerm = document.getElementById("input-card-search").value.toLowerCase();
-
-    if (!searchTerm) {
-        displayCards(cards);
-        return
+    if (!legalCardsForAllYears[selectedYear]) {
+        await fetchLegalCards();
     }
 
-    const filteredCards = [];
+    const legalCardsForSelectedYear = legalCardsForAllYears[selectedYear];
+    const illegalIds = ids.filter(id => !legalCardsForSelectedYear.has(id));
 
-    for (let i = 0; i < cardsLowerCased.length; i++) {
-        const card = cardsLowerCased[i];
-        if (card.includes(searchTerm)) {
-            filteredCards.push(cards[i]);
-        }
+    if (illegalIds.length == 0) {
+        displayValidationResult("No illegal cards found.", SUCCESS);
+        return;
     }
 
-    displayCards(filteredCards);
-}
+    const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + illegalIds.join(",")
 
-function formatDate(date) {
-    return new Date(date).toLocaleDateString("en-US");
-}
+    const response = await fetch(url);
 
-function getCurrentYear() {
-    return new Date().getFullYear();;
-}
+    let msg = "These cards are not legal for the selected year:\n";
 
-function setSectionVisibility(isVisible) {
-    const sections = document.getElementsByClassName("requires-initialization");
-    Array.from(sections).forEach(s => s.hidden = !isVisible)
-}
-
-function setCards(d) {
-    cards = []
-    cardsLowerCased = []
-    cardIdMapping = {}
-
-    for (let i = 0; i < d.length; i++) {
-        const card = d[i]
-        const name = card.name;
-        cards[i] = name;
-        cardsLowerCased[i] = name.toLowerCase();
-
-        for (let j = 0; j < card.card_images.length; j++) {
-            const id = card.card_images[j].id;
-            cardIdMapping[id] = name;
-        }
+    if (!response.ok) {
+        msg += "Could not determine the names so here are the ids at least:\n";
+        msg += illegalIds.join("\n");
+    } else {
+        let cards = (await response.json()).data;
+        cards = cards.map(c => c.name);
+        msg += cards.join("\n");
     }
 
-    displayCards(cards);
-    cardsListItems = document.getElementById("cards").children;
-    document.getElementById("init-button").disabled = false;
-
-    setSectionVisibility(true);
+    displayValidationResult(msg, FAILURE);
 }
 
-function fetchCards() {
-    document.getElementById("init-button").disabled = true;
-    setSectionVisibility(false);
-    document.getElementById("input-card-search").value = "";
-    displayValidationResult([], v.NEUTRAL); // clear
-
-    const year = document.getElementById("year-selection").value;
+function buildGalleryLink(startYear, endYear) {
+    const url = new URL("https://db.ygoprodeck.com/search/");
 
     const params = new URLSearchParams();
+
     params.append("format", "tcg");
+    params.append("view", "Gallery");
+    params.append("dateregion", "tcg_date");
+    params.append("startdate", startYear + "-01-01");
+    params.append("enddate", endYear + "-12-31");
 
-    // Only add the date params if one of the dates is set
-    if (year != getCurrentYear()) {
-        const startDate = "2000-01-01";
-        const endDate = year + "-12-31";
-
-        params.append("startdate", formatDate(startDate));
-        params.append("enddate", formatDate(endDate));
-    }
-
-    const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     url.search = params.toString();
-    fetch(url)
-        .then(r => r.json())
-        .then(body => setCards(body.data));
+    return url.toString();
+}
+
+function updateGalleryLinks(endYear) {
+    document.getElementById("complete-gallery-link").href = buildGalleryLink(2000, endYear);
+    document.getElementById("singleyear-gallery-link").href = buildGalleryLink(endYear, endYear);
+}
+
+function setMockLoading(isLoading) {
+    const shouldBeHidden = document.getElementsByClassName("hide-during-loading");
+    Array.from(shouldBeHidden).forEach(s => s.hidden = isLoading);
+
+    const shouldBeShown = document.getElementsByClassName("show-during-loading");
+    Array.from(shouldBeShown).forEach(s => s.hidden = !isLoading);
+}
+
+function changeYear() {
+    setMockLoading(true);
+
+    selectedYear = document.getElementById("year-selection").value;
+    displayValidationResult("", NEUTRAL);
+    updateGalleryLinks(selectedYear);
+
+    setTimeout(() => setMockLoading(false), 250);
 }
 
 function initYearSelection() {
@@ -157,8 +167,6 @@ function initYearSelection() {
         option.textContent = i;
         yearSelect.appendChild(option);
     }
-
-    yearSelect.children[0].selected = true;
 }
 
 window.addEventListener("load", () => initYearSelection());
