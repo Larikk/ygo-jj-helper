@@ -20,7 +20,7 @@ function getCurrentYear() {
     return new Date().getFullYear();;
 }
 
-function displayValidationResult(lines, status) {
+function displayValidationResult(msg, status) {
     const output = document.getElementById("validation-result");
     output.classList.remove("text-success", "text-danger");
 
@@ -30,7 +30,7 @@ function displayValidationResult(lines, status) {
         output.classList.add("text-danger");
     }
 
-    output.innerHTML = lines.join("<br>")
+    output.innerHTML = msg;
     setYDKValidateButtonEnabled(true);
 }
 
@@ -71,7 +71,7 @@ async function fetchLegalCards() {
 }
 
 async function validateYdk() {
-    displayValidationResult(["Working on it..."], NEUTRAL);
+    displayValidationResult("Working on it...", NEUTRAL);
     setYDKValidateButtonEnabled(false);
 
     const ydk = document.getElementById("ydk-input").value;
@@ -84,7 +84,7 @@ async function validateYdk() {
     ids = [... new Set(ids)];
 
     if (ids.length == 0) {
-        displayValidationResult(["No card ids were found."], FAILURE);
+        displayValidationResult("No card ids were found.", FAILURE);
         return;
     }
 
@@ -95,7 +95,7 @@ async function validateYdk() {
     const illegalIds = ids.filter(id => !legalCards.has(id));
 
     if (illegalIds.length == 0) {
-        displayValidationResult(["No illegal cards found."], SUCCESS);
+        displayValidationResult("No illegal cards found.", SUCCESS);
         return;
     }
 
@@ -103,18 +103,18 @@ async function validateYdk() {
 
     const response = await fetch(url);
 
-    let lines = ["These cards are not legal for the selected year:"]
+    let msg = "These cards are not legal for the selected year:\n";
 
     if (!response.ok) {
-        lines.push("Could not determine the names so here are the ids at least:");
-        lines = [...lines, ...illegalIds];
+        msg += "Could not determine the names so here are the ids at least:\n";
+        msg += illegalIds.join("\n");
     } else {
         let cards = (await response.json()).data;
         cards = cards.map(c => c.name);
-        lines = [...lines, ...cards];
+        msg += cards.join("\n");
     }
 
-    displayValidationResult(lines, FAILURE);
+    displayValidationResult(msg, FAILURE);
 }
 
 function buildGalleryLink(startYear, endYear) {
@@ -150,7 +150,7 @@ function changeYear() {
 
     selectedYear = document.getElementById("year-selection").value;
     legalCards = null;
-    displayValidationResult([], NEUTRAL);
+    displayValidationResult("", NEUTRAL);
     updateGalleryLinks(selectedYear);
 
     setTimeout(() => setMockLoading(false), 250);
