@@ -98,7 +98,6 @@ async function validateYdk() {
 
     if (illegalIds.length == 0) {
         displayValidationResult(["No illegal cards found."], v.SUCCESS);
-        button.disabled = false;
         return;
     }
 
