@@ -57,7 +57,7 @@ async function fetchLegalCards() {
 
     if (!response.ok) {
         alertFetchError("Could not fetch legal cards, show this to the dev.", response);
-        throw response.json();
+        throw (await response.json());
     }
 
     const _legalCards = new Set();
