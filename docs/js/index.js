@@ -1,12 +1,20 @@
-let cards = []
-let cardsLowerCased = [] // used for more efficient searching
-let cardIdMapping = {} // used for ydk validation
+let selectedYear = null
+let legalCards = null // used for ydk validation
 
 // Validation result
 let v = {
     NEUTRAL : 0,
     SUCCESS : 1,
     FAILURE : 2,
+}
+
+function alertFetchError(msg, response) {
+    msg = msg + " " + response.body();
+    alert(msg);
+}
+
+function setYDKValidateButtonEnabled(enabled) {
+    document.getElementById("validate-ydk-button").disabled = !enabled;
 }
 
 function displayValidationResult(lines, status) {
@@ -20,20 +28,13 @@ function displayValidationResult(lines, status) {
     }   
 
     output.innerHTML = lines.join("<br>")
+    setYDKValidateButtonEnabled(true);
 }
 
-function displayIllegalCards(cards) {
-    const msg = "These cards are not legal for the selected format:";
+async function validateYdk() {
+    displayValidationResult(["Working on it..."], v.NEUTRAL);
+    setYDKValidateButtonEnabled(false);
 
-    cards = cards.map(c => c.name);
-
-    const lines = [msg, ...cards]
-
-    displayValidationResult(lines, v.FAILURE);
-}
-
-function validateYdk() {
-    displayValidationResult(["Working on it..."], v.NEUTRAL)
     const ydk = document.getElementById("ydk-input").value;
 
     let ids = ydk.split("\n")
@@ -41,45 +42,41 @@ function validateYdk() {
         .filter(l => l.match("^[0-9]+$"))
         .map(n => +n);
 
-    
-    ids = [... new Set(ids)]
+    ids = [... new Set(ids)];
 
-    const illegalIds = ids.filter(n => !cardIdMapping[n]);
-
-    if (illegalIds.length == 0) {
-        displayValidationResult(["No illegal cards found."], v.SUCCESS)
+    if (ids.length == 0) {
+        displayValidationResult(["No card ids were found."], v.FAILURE);
         return;
     }
 
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + illegalIds.join(","))
-        .then(r => r.json())
-        .then(data => displayIllegalCards(data.data))
-}
-
-function displayCards(cards) {
-    const cardsDisplay = document.getElementById("cards");
-    cardsDisplay.value = cards.join("\n");
-}
-
-
-function searchCards() {
-    const searchTerm = document.getElementById("input-card-search").value.toLowerCase();
-
-    if (!searchTerm) {
-        displayCards(cards);
-        return
+    if (!legalCards) {
+        await fetchLegalCards();
     }
 
-    const filteredCards = [];
+    const illegalIds = ids.filter(id => !legalCards.has(id));
 
-    for (let i = 0; i < cardsLowerCased.length; i++) {
-        const card = cardsLowerCased[i];
-        if (card.includes(searchTerm)) {
-            filteredCards.push(cards[i]);
-        }
+    if (illegalIds.length == 0) {
+        displayValidationResult(["No illegal cards found."], v.SUCCESS);
+        button.disabled = false;
+        return;
     }
 
-    displayCards(filteredCards);
+    const url = "https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + illegalIds.join(",")
+
+    const response = await fetch(url);
+
+    let lines = ["These cards are not legal for the selected year:"]
+
+    if (response.ok) {
+        lines.push("Could not determine the names so here are the ids at least:");
+        lines = [...lines, ...illegalIds];
+    } else {
+        let cards = (await response.json()).data;
+        cards = cards.map(c => c.name);
+        lines = [...lines, ...cards];
+    }
+    
+    displayValidationResult(lines, v.FAILURE);
 }
 
 function formatDate(date) {
@@ -115,42 +112,13 @@ function updateGalleryLinks(endYear) {
     document.getElementById("singleyear-gallery-link").href = buildGalleryLink(endYear, endYear);
 }
 
-function setCards(d) {
-    cards = []
-    cardsLowerCased = []
-    cardIdMapping = {}
-
-    for (let i = 0; i < d.length; i++) {
-        const card = d[i]
-        const name = card.name;
-        cards[i] = name;
-        cardsLowerCased[i] = name.toLowerCase();
-
-        for (let j = 0; j < card.card_images.length; j++) {
-            const id = card.card_images[j].id;
-            cardIdMapping[id] = name;
-        }
-    }
-
-    displayCards(cards);
-    cardsListItems = document.getElementById("cards").children;
-    document.getElementById("init-button").disabled = false;
-
-    setSectionVisibility(true);
-}
-
-function fetchCards() {
-    document.getElementById("init-button").disabled = true;
-    setSectionVisibility(false);
-    document.getElementById("input-card-search").value = "";
-    displayValidationResult([], v.NEUTRAL); // clear
-
-    const year = document.getElementById("year-selection").value;
+async function fetchLegalCards() {
+    const year = selectedYear;
 
     const params = new URLSearchParams();
     params.append("format", "tcg");
 
-    // Only add the date params if one of the dates is set
+    // If year == currentYear we are just gonna request all  cards by not setting dates
     if (year != getCurrentYear()) {
         const startDate = "2000-01-01";
         const endDate = year + "-12-31";
@@ -161,15 +129,30 @@ function fetchCards() {
 
     const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     url.search = params.toString();
+    const response = await fetch(url);
 
-    const cb = (body) => {
-        updateGalleryLinks(year);
-        setCards(body.data);
-    };
+    if (!response.ok) {
+        alertFetchError("Could not fetch legal cards, show this to the dev.", response);
+        throw response.json();
+    }
+    
+    const _legalCards = new Set();
+    const json = await response.json();
+    const cards = json.data;
+    for (const card of cards) {
+        for (const cardVersion of card.card_images) {
+            _legalCards.add(cardVersion.id);
+        }
+    }
 
-    fetch(url)
-        .then(r => r.json())
-        .then(cb);
+    legalCards = _legalCards;
+}
+
+function initButtonPressed() {
+    selectedYear = document.getElementById("year-selection").value;
+    legalCards = null;
+    updateGalleryLinks(selectedYear);
+    setSectionVisibility(true);
 }
 
 function initYearSelection() {
