@@ -31,13 +31,17 @@
             <p>This utility is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
         </div>
 
-        <div class="section requires-initialization" hidden="true">
+        <div class="show-during-loading d-flex justify-content-center" hidden="true">
+            <div class="show-during-loading spinner-border" role="status" hidden="true"></div>
+        </div>
+
+        <div class="section hide-during-loading" hidden="true">
             <h2>Available Cards</h2>
             <p>Gallery with all legal cards: <a id="complete-gallery-link" href="./">Link</a></p>
             <p>Gallery with cards that were released in the selected year: <a id="singleyear-gallery-link" href="./">Link</a></p>
         </div>
 
-        <div class="section requires-initialization" hidden="true">
+        <div class="section hide-during-loading" hidden="true">
             <h2>Deck Validation</h2>
             Download the YDK file and paste its contents here.
             <textarea id="ydk-input" class="form-control mt-1 mb-3"></textarea>
