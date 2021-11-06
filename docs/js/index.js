@@ -42,8 +42,8 @@ async function fetchLegalCards() {
         const startDate = "2000-01-01";
         const endDate = year + "-12-31";
 
-        params.append("startdate", formatDate(startDate));
-        params.append("enddate", formatDate(endDate));
+        params.append("startdate", startDate);
+        params.append("enddate", endDate);
     }
 
     const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
@@ -113,10 +113,6 @@ async function validateYdk() {
     }
 
     displayValidationResult(lines, v.FAILURE);
-}
-
-function formatDate(date) {
-    return new Date(date).toLocaleDateString("en-US");
 }
 
 function getCurrentYear() {
