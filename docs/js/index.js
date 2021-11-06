@@ -1,5 +1,5 @@
 let selectedYear = null
-let legalCards = null // used for ydk validation
+let legalCardsForAllYears = {} // used for ydk validation
 
 // Some constants for validation
 const NEUTRAL = 0;
@@ -58,16 +58,16 @@ async function fetchLegalCards() {
         throw "Could not fetch legal cards";
     }
 
-    const _legalCards = new Set();
+    const legalCardsForSelectedYear = new Set();
     const json = await response.json();
     const cards = json.data;
     for (const card of cards) {
         for (const cardVersion of card.card_images) {
-            _legalCards.add(cardVersion.id);
+            legalCardsForSelectedYear.add(cardVersion.id);
         }
     }
 
-    legalCards = _legalCards;
+    legalCardsForAllYears[selectedYear] = legalCardsForSelectedYear;
 }
 
 async function validateYdk() {
@@ -88,11 +88,12 @@ async function validateYdk() {
         return;
     }
 
-    if (!legalCards) {
+    if (!legalCardsForAllYears[selectedYear]) {
         await fetchLegalCards();
     }
 
-    const illegalIds = ids.filter(id => !legalCards.has(id));
+    const legalCardsForSelectedYear = legalCardsForAllYears[selectedYear];
+    const illegalIds = ids.filter(id => !legalCardsForSelectedYear.has(id));
 
     if (illegalIds.length == 0) {
         displayValidationResult("No illegal cards found.", SUCCESS);
@@ -149,7 +150,6 @@ function changeYear() {
     setMockLoading(true);
 
     selectedYear = document.getElementById("year-selection").value;
-    legalCards = null;
     displayValidationResult("", NEUTRAL);
     updateGalleryLinks(selectedYear);
 
