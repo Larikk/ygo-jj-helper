@@ -3,9 +3,9 @@ let legalCards = null // used for ydk validation
 
 // Validation result
 let v = {
-    NEUTRAL : 0,
-    SUCCESS : 1,
-    FAILURE : 2,
+    NEUTRAL: 0,
+    SUCCESS: 1,
+    FAILURE: 2,
 }
 
 function alertFetchError(msg, response) {
@@ -25,7 +25,7 @@ function displayValidationResult(lines, status) {
         output.classList.add("text-success");
     } else if (status == v.FAILURE) {
         output.classList.add("text-danger");
-    }   
+    }
 
     output.innerHTML = lines.join("<br>")
     setYDKValidateButtonEnabled(true);
@@ -54,7 +54,7 @@ async function fetchLegalCards() {
         alertFetchError("Could not fetch legal cards, show this to the dev.", response);
         throw response.json();
     }
-    
+
     const _legalCards = new Set();
     const json = await response.json();
     const cards = json.data;
@@ -111,7 +111,7 @@ async function validateYdk() {
         cards = cards.map(c => c.name);
         lines = [...lines, ...cards];
     }
-    
+
     displayValidationResult(lines, v.FAILURE);
 }
 
