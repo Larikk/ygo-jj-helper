@@ -22,26 +22,31 @@
 
             <div class="year-selection-container">
                 Select the year: 
-                <select id="year-selection" class="form-select" aria-label="Year selection"></select>
+                <select id="year-selection" class="form-select" aria-label="Year selection" onchange="changeYear()">
+                    <option selected="true" value="0" hidden="true">Please select a year</option>
+                </select>
             </div>
 
             <p>You can use this <a href="./cardsets.html">timeline</a> for an overview of the dates of card set releases.</p>
             <p>This utility is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
-            <button id="init-button" class="btn btn-primary" type="button" onclick="fetchCards()">Initialize</button>
         </div>
 
-        <div class="section requires-initialization" hidden="true">
+        <div class="show-during-loading d-flex justify-content-center" hidden="true">
+            <div class="show-during-loading spinner-border" role="status" hidden="true"></div>
+        </div>
+
+        <div class="section hide-during-loading" hidden="true">
+            <h2>Available Cards</h2>
+            <p>Gallery with all legal cards: <a id="complete-gallery-link" href="./">Link</a></p>
+            <p>Gallery with cards that were released in the selected year: <a id="singleyear-gallery-link" href="./">Link</a></p>
+        </div>
+
+        <div class="section hide-during-loading" hidden="true">
             <h2>Deck Validation</h2>
             Download the YDK file and paste its contents here.
             <textarea id="ydk-input" class="form-control mt-1 mb-3"></textarea>
             <button type="button" class="btn btn-primary mb-3" id="validate-ydk-button" onclick="validateYdk()">Validate</button>
-            <p id="validation-result"></p>
-        </div>
-
-        <div class="section requires-initialization" hidden="true">
-            <h2>Available Cards</h2>
-            <input type="text" id="input-card-search" class="form-control mb-1" placeholder="Search by name" oninput="searchCards()">
-            <textarea id="cards" class="form-control" readonly></textarea>
+            <div id="validation-result"></div>
         </div>
     </div>
     <script src="js/index.js"></script>
