@@ -17,6 +17,11 @@ function setYDKValidateButtonEnabled(enabled) {
     document.getElementById("validate-ydk-button").disabled = !enabled;
 }
 
+
+function getCurrentYear() {
+    return new Date().getFullYear();;
+}
+
 function displayValidationResult(lines, status) {
     const output = document.getElementById("validation-result");
     output.classList.remove("text-success", "text-danger");
@@ -113,10 +118,6 @@ async function validateYdk() {
     }
 
     displayValidationResult(lines, v.FAILURE);
-}
-
-function getCurrentYear() {
-    return new Date().getFullYear();;
 }
 
 function setSectionVisibility(isVisible) {
