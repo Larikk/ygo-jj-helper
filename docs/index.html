@@ -22,12 +22,13 @@
 
             <div class="year-selection-container">
                 Select the year: 
-                <select id="year-selection" class="form-select" aria-label="Year selection"></select>
+                <select id="year-selection" class="form-select" aria-label="Year selection" onchange="changeYear()">
+                    <option selected="true" value="0" hidden="true">Please select a year</option>
+                </select>
             </div>
 
             <p>You can use this <a href="./cardsets.html">timeline</a> for an overview of the dates of card set releases.</p>
             <p>This utility is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
-            <button id="init-button" class="btn btn-primary" type="button" onclick="initButtonPressed()">Initialize</button>
         </div>
 
         <div class="section requires-initialization" hidden="true">

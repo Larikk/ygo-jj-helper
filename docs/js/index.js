@@ -142,12 +142,11 @@ function updateGalleryLinks(endYear) {
 function isInitializing(isInitializing) {
     const sections = document.getElementsByClassName("requires-initialization");
     Array.from(sections).forEach(s => s.hidden = isInitializing);
-    document.getElementById("init-button").disabled = isInitializing;
 }
 
-function initButtonPressed() {
-    isInitializing(true);
+function changeYear() {
     selectedYear = document.getElementById("year-selection").value;
+    isInitializing(true);
     legalCards = null;
     displayValidationResult([], v.NEUTRAL);
     updateGalleryLinks(selectedYear);
@@ -165,8 +164,6 @@ function initYearSelection() {
         option.textContent = i;
         yearSelect.appendChild(option);
     }
-
-    yearSelect.children[0].selected = true;
 }
 
 window.addEventListener("load", () => initYearSelection());
