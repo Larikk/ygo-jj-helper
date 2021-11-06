@@ -149,6 +149,7 @@ function initButtonPressed() {
     isInitializing(true);
     selectedYear = document.getElementById("year-selection").value;
     legalCards = null;
+    displayValidationResult([], v.NEUTRAL);
     updateGalleryLinks(selectedYear);
     setTimeout(() => isInitializing(false), 500);
 }
