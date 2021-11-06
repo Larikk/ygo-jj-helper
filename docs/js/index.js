@@ -6,8 +6,8 @@ const NEUTRAL = 0;
 const SUCCESS = 1;
 const FAILURE = 2;
 
-function alertFetchError(msg, response) {
-    msg = msg + " " + response.body();
+async function alertFetchError(msg, url, response) {
+    msg = [msg, url, (await response.text())].join("\n\n");
     alert(msg);
 }
 
@@ -54,8 +54,8 @@ async function fetchLegalCards() {
     const response = await fetch(url);
 
     if (!response.ok) {
-        alertFetchError("Could not fetch legal cards, show this to the dev.", response);
-        throw (await response.json());
+        await alertFetchError("Could not fetch legal cards, send this to the dev.", url, response);
+        throw "Could not fetch legal cards";
     }
 
     const _legalCards = new Set();
