@@ -31,6 +31,42 @@ function displayValidationResult(lines, status) {
     setYDKValidateButtonEnabled(true);
 }
 
+async function fetchLegalCards() {
+    const year = selectedYear;
+
+    const params = new URLSearchParams();
+    params.append("format", "tcg");
+
+    // If year == currentYear we are just gonna request all  cards by not setting dates
+    if (year != getCurrentYear()) {
+        const startDate = "2000-01-01";
+        const endDate = year + "-12-31";
+
+        params.append("startdate", formatDate(startDate));
+        params.append("enddate", formatDate(endDate));
+    }
+
+    const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
+    url.search = params.toString();
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        alertFetchError("Could not fetch legal cards, show this to the dev.", response);
+        throw response.json();
+    }
+    
+    const _legalCards = new Set();
+    const json = await response.json();
+    const cards = json.data;
+    for (const card of cards) {
+        for (const cardVersion of card.card_images) {
+            _legalCards.add(cardVersion.id);
+        }
+    }
+
+    legalCards = _legalCards;
+}
+
 async function validateYdk() {
     displayValidationResult(["Working on it..."], v.NEUTRAL);
     setYDKValidateButtonEnabled(false);
@@ -110,42 +146,6 @@ function buildGalleryLink(startYear, endYear) {
 function updateGalleryLinks(endYear) {
     document.getElementById("complete-gallery-link").href = buildGalleryLink(2000, endYear);
     document.getElementById("singleyear-gallery-link").href = buildGalleryLink(endYear, endYear);
-}
-
-async function fetchLegalCards() {
-    const year = selectedYear;
-
-    const params = new URLSearchParams();
-    params.append("format", "tcg");
-
-    // If year == currentYear we are just gonna request all  cards by not setting dates
-    if (year != getCurrentYear()) {
-        const startDate = "2000-01-01";
-        const endDate = year + "-12-31";
-
-        params.append("startdate", formatDate(startDate));
-        params.append("enddate", formatDate(endDate));
-    }
-
-    const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
-    url.search = params.toString();
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        alertFetchError("Could not fetch legal cards, show this to the dev.", response);
-        throw response.json();
-    }
-    
-    const _legalCards = new Set();
-    const json = await response.json();
-    const cards = json.data;
-    for (const card of cards) {
-        for (const cardVersion of card.card_images) {
-            _legalCards.add(cardVersion.id);
-        }
-    }
-
-    legalCards = _legalCards;
 }
 
 function initButtonPressed() {
