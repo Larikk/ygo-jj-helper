@@ -154,7 +154,7 @@ function changeYear() {
     legalCards = null;
     displayValidationResult([], v.NEUTRAL);
     updateGalleryLinks(selectedYear);
-    
+
     setTimeout(() => setMockLoading(false), 250);
 }
 
