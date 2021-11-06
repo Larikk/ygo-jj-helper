@@ -95,6 +95,26 @@ function setSectionVisibility(isVisible) {
     Array.from(sections).forEach(s => s.hidden = !isVisible)
 }
 
+function buildGalleryLink(startYear, endYear) {
+    const url = new URL("https://db.ygoprodeck.com/search/");
+
+    const params = new URLSearchParams();
+
+    params.append("format", "tcg");
+    params.append("view", "Gallery");
+    params.append("dateregion", "tcg_date");
+    params.append("startdate", startYear + "-01-01");
+    params.append("enddate", endYear + "-12-31");
+
+    url.search = params.toString();
+    return url.toString();
+}
+
+function updateGalleryLinks(endYear) {
+    document.getElementById("complete-gallery-link").href = buildGalleryLink(2000, endYear);
+    document.getElementById("singleyear-gallery-link").href = buildGalleryLink(endYear, endYear);
+}
+
 function setCards(d) {
     cards = []
     cardsLowerCased = []
@@ -141,9 +161,15 @@ function fetchCards() {
 
     const url = new URL("https://db.ygoprodeck.com/api/v7/cardinfo.php");
     url.search = params.toString();
+
+    const cb = (body) => {
+        updateGalleryLinks(year);
+        setCards(body.data);
+    };
+
     fetch(url)
         .then(r => r.json())
-        .then(body => setCards(body.data));
+        .then(cb);
 }
 
 function initYearSelection() {
