@@ -108,7 +108,7 @@ async function validateYdk() {
 
     let lines = ["These cards are not legal for the selected year:"]
 
-    if (response.ok) {
+    if (!response.ok) {
         lines.push("Could not determine the names so here are the ids at least:");
         lines = [...lines, ...illegalIds];
     } else {
