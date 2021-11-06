@@ -1,12 +1,10 @@
 let selectedYear = null
 let legalCards = null // used for ydk validation
 
-// Validation result
-let v = {
-    NEUTRAL: 0,
-    SUCCESS: 1,
-    FAILURE: 2,
-}
+// Some constants for validation
+const NEUTRAL = 0;
+const SUCCESS = 1;
+const FAILURE = 2;
 
 function alertFetchError(msg, response) {
     msg = msg + " " + response.body();
@@ -26,9 +24,9 @@ function displayValidationResult(lines, status) {
     const output = document.getElementById("validation-result");
     output.classList.remove("text-success", "text-danger");
 
-    if (status == v.SUCCESS) {
+    if (status == SUCCESS) {
         output.classList.add("text-success");
-    } else if (status == v.FAILURE) {
+    } else if (status == FAILURE) {
         output.classList.add("text-danger");
     }
 
@@ -73,7 +71,7 @@ async function fetchLegalCards() {
 }
 
 async function validateYdk() {
-    displayValidationResult(["Working on it..."], v.NEUTRAL);
+    displayValidationResult(["Working on it..."], NEUTRAL);
     setYDKValidateButtonEnabled(false);
 
     const ydk = document.getElementById("ydk-input").value;
@@ -86,7 +84,7 @@ async function validateYdk() {
     ids = [... new Set(ids)];
 
     if (ids.length == 0) {
-        displayValidationResult(["No card ids were found."], v.FAILURE);
+        displayValidationResult(["No card ids were found."], FAILURE);
         return;
     }
 
@@ -97,7 +95,7 @@ async function validateYdk() {
     const illegalIds = ids.filter(id => !legalCards.has(id));
 
     if (illegalIds.length == 0) {
-        displayValidationResult(["No illegal cards found."], v.SUCCESS);
+        displayValidationResult(["No illegal cards found."], SUCCESS);
         return;
     }
 
@@ -116,7 +114,7 @@ async function validateYdk() {
         lines = [...lines, ...cards];
     }
 
-    displayValidationResult(lines, v.FAILURE);
+    displayValidationResult(lines, FAILURE);
 }
 
 function buildGalleryLink(startYear, endYear) {
@@ -152,7 +150,7 @@ function changeYear() {
 
     selectedYear = document.getElementById("year-selection").value;
     legalCards = null;
-    displayValidationResult([], v.NEUTRAL);
+    displayValidationResult([], NEUTRAL);
     updateGalleryLinks(selectedYear);
 
     setTimeout(() => setMockLoading(false), 250);
