@@ -120,11 +120,6 @@ async function validateYdk() {
     displayValidationResult(lines, v.FAILURE);
 }
 
-function setSectionVisibility(isVisible) {
-    const sections = document.getElementsByClassName("requires-initialization");
-    Array.from(sections).forEach(s => s.hidden = !isVisible)
-}
-
 function buildGalleryLink(startYear, endYear) {
     const url = new URL("https://db.ygoprodeck.com/search/");
 
@@ -145,11 +140,18 @@ function updateGalleryLinks(endYear) {
     document.getElementById("singleyear-gallery-link").href = buildGalleryLink(endYear, endYear);
 }
 
+function isInitializing(isInitializing) {
+    const sections = document.getElementsByClassName("requires-initialization");
+    Array.from(sections).forEach(s => s.hidden = isInitializing);
+    document.getElementById("init-button").disabled = isInitializing;
+}
+
 function initButtonPressed() {
+    isInitializing(true);
     selectedYear = document.getElementById("year-selection").value;
     legalCards = null;
     updateGalleryLinks(selectedYear);
-    setSectionVisibility(true);
+    setTimeout(() => isInitializing(false), 500);
 }
 
 function initYearSelection() {
