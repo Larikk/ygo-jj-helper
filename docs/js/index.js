@@ -119,18 +119,21 @@ async function validateYdk() {
 }
 
 function buildGalleryLink(startYear, endYear) {
-    const url = new URL("https://db.ygoprodeck.com/search/");
+    let url = "https://db.ygoprodeck.com/search/?";
 
-    const params = new URLSearchParams();
+    const params = {
+        "view": "Gallery",
+        "format": "tcg",
+        "dateregion": "tcg_date",
+        "startdate": startYear + "-01-01",
+        "enddate": endYear + "-12-31",
+    }
 
-    params.append("format", "tcg");
-    params.append("view", "Gallery");
-    params.append("dateregion", "tcg_date");
-    params.append("startdate", startYear + "-01-01");
-    params.append("enddate", endYear + "-12-31");
+    for (const [key, value] of Object.entries(params)) {
+        url += `&${key}=${value}`;
+    }
 
-    url.search = params.toString();
-    return url.toString();
+    return url;
 }
 
 function updateGalleryLinks(endYear) {
