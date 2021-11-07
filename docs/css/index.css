@@ -33,3 +33,7 @@ p {
 #validation-result {
     white-space: pre-line;
 }
+
+.text {
+    white-space: pre-line;
+}
