@@ -3488,6 +3488,10 @@ const cardsets = [
         "name": "Structure Deck: Cyber Strike"
     },
     {
+        "date": "2021-11-01",
+        "name": "The Lost Art Promotion 2021 J"
+    },
+    {
         "date": "2021-11-04",
         "name": "Burst of Destiny"
     },
