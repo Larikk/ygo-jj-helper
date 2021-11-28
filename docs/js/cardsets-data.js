@@ -517,6 +517,22 @@ const cardsets = [
     },
     {
         "date": "2006-04-28",
+        "name": "Duelist League Series 2 participation cards"
+    },
+    {
+        "date": "2006-04-28",
+        "name": "Duelist League Series 3 participation card"
+    },
+    {
+        "date": "2006-04-28",
+        "name": "Duelist League Series 4 participation card"
+    },
+    {
+        "date": "2006-04-28",
+        "name": "Duelist League Series 5 participation card"
+    },
+    {
+        "date": "2006-04-28",
         "name": "Tournament Pack 8"
     },
     {
@@ -1180,6 +1196,10 @@ const cardsets = [
         "name": "Duelist League Demo 2010"
     },
     {
+        "date": "2009-08-01",
+        "name": "Duelist League Series 1 participation cards"
+    },
+    {
         "date": "2009-08-15",
         "name": "Ancient Prophecy Sneak Peek Participation Card"
     },
@@ -1254,6 +1274,10 @@ const cardsets = [
     {
         "date": "2010-01-05",
         "name": "Twilight Edition"
+    },
+    {
+        "date": "2010-01-05",
+        "name": "Ultimate Edition"
     },
     {
         "date": "2010-01-05",
@@ -2764,6 +2788,10 @@ const cardsets = [
         "name": "OTS Tournament Pack 7"
     },
     {
+        "date": "2018-04-13",
+        "name": "OTS Tournament Pack 7 (POR)"
+    },
+    {
         "date": "2018-04-19",
         "name": "Structure Deck: Lair of Darkness"
     },
@@ -3157,6 +3185,10 @@ const cardsets = [
     },
     {
         "date": "2020-01-01",
+        "name": "Speed Duel Demo Deck 2020"
+    },
+    {
+        "date": "2020-01-01",
         "name": "Trials of the Pharaoh - Trials of the Kingdom promotional card"
     },
     {
@@ -3432,8 +3464,16 @@ const cardsets = [
         "name": "Lightning Overdrive"
     },
     {
+        "date": "2021-05-22",
+        "name": "Yu-Gi-Oh! TCG Remote Duel Extravaganza participation card"
+    },
+    {
         "date": "2021-05-29",
         "name": "Lightning Overdrive Premiere! promotional card"
+    },
+    {
+        "date": "2021-06-01",
+        "name": "Palladium Oracle Mahad Sweepstakes"
     },
     {
         "date": "2021-06-01",
@@ -3442,10 +3482,6 @@ const cardsets = [
     {
         "date": "2021-06-09",
         "name": "OTS Tournament Pack 16"
-    },
-    {
-        "date": "2021-06-15",
-        "name": "Legendary Duelists: Synchro Storm"
     },
     {
         "date": "2021-06-17",
@@ -3468,12 +3504,24 @@ const cardsets = [
         "name": "The Lost Art Promotion 2021 G"
     },
     {
+        "date": "2021-08-01",
+        "name": "The Lost Art Promotion 2021 H"
+    },
+    {
         "date": "2021-08-07",
         "name": "Dawn of Majesty Premiere! promotional card"
     },
     {
         "date": "2021-08-12",
         "name": "Dawn of Majesty"
+    },
+    {
+        "date": "2021-08-28",
+        "name": "KC Grand Tournament 2021 prize card"
+    },
+    {
+        "date": "2021-09-01",
+        "name": "The Lost Art Promotion 2021 I"
     },
     {
         "date": "2021-09-30",
@@ -3488,8 +3536,16 @@ const cardsets = [
         "name": "Structure Deck: Cyber Strike"
     },
     {
+        "date": "2021-10-29",
+        "name": "Legendary Duelists: Synchro Storm"
+    },
+    {
         "date": "2021-11-01",
         "name": "The Lost Art Promotion 2021 J"
+    },
+    {
+        "date": "2021-11-01",
+        "name": "The Lost Art Promotion 2021 K"
     },
     {
         "date": "2021-11-04",
@@ -3498,5 +3554,9 @@ const cardsets = [
     {
         "date": "2021-11-18",
         "name": "Maximum Gold: El Dorado"
+    },
+    {
+        "date": "2021-12-02",
+        "name": "Brothers of Legend"
     }
 ]
