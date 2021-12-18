@@ -1,16 +1,7 @@
-
-function makeIndexConstantAccess(array) {
-    const map = new Map()
-
-    for (let i = 0; i < array.length; i++) {
-        map.set(array[i], i)
-    }
-
-    return map
-}
-
 // https://stackoverflow.com/a/12646864
 function shuffleArray(array) {
+    array = array.slice()
+
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
@@ -48,7 +39,7 @@ class Type {
     static Spell = new Type("spell-bg")
     static Trap = new Type("trap-bg")
 
-    static _order = [
+    static Order = [
         this.NormalMonster,
         this.EffectMonster,
         this.RitualMonster,
@@ -61,20 +52,22 @@ class Type {
         this.Spell,
         this.Trap,
     ]
-
-    static Order = makeIndexConstantAccess(this._order)
 }
 
 class Card {
     constructor(name, type) {
         this.name = name
         this.type = type
+        this.typeIndex = Type.Order.indexOf(type)
     }
 
     // Just for testing colors and stuff
     static DebugCards = [
+        new Card("1", Type.NormalMonster),
         new Card("7", Type.NormalMonster),
+        new Card("A", Type.NormalMonster),
         new Card("7", Type.EffectMonster),
+        new Card("B", Type.EffectMonster),
         new Card("7", Type.RitualMonster),
         new Card("7", Type.FusionMonster),
         new Card("7", Type.SynchroMonster),
@@ -91,10 +84,13 @@ class Card {
 }
 
 function createDebugList() {
+    let banned = Card.DebugCards.slice()
+    banned.push(...Card.DebugCards)
+    banned = shuffleArray(banned)
     return {
         id: "Debug",
         name: "Debug Part A",
-        banned: Card.DebugCards.slice(),
+        banned: banned,
         limited: [],
         semilimited: [],
         changes: [
@@ -127,8 +123,19 @@ const lists = [
     create2002A(),
 ]
 
+const cardComparator = (a, b) => {
+    const typeDelta = a.typeIndex - b.typeIndex
+
+    if (typeDelta !== 0) {
+        return typeDelta
+    }
+
+    return a.name.localeCompare(b.name)
+}
+
 function cardsToTable(cards, status) {
     status = status.name
+    cards.sort(cardComparator)
 
     const table = document.createElement("table")
     table.classList.add("table", "table-borderless", "table-hover", "banlist-table")
