@@ -77,7 +77,7 @@ function cardsToTable(cards, status) {
 
     const table = document.createElement("table")
     table.classList.add("table", "table-borderless", "table-hover", "banlist-table")
- 
+
     const thead = document.createElement("thead")
     const tbody = document.createElement("tbody")
 
