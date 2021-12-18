@@ -13,15 +13,15 @@
 }
 
 :root {
-    --normal-card-bg: #CC9955;
-    --effect-card-bg: #BB5522;
-    --ritual-card-bg: #4870B6;
-    --fusion-card-bg: #813B93;
-    --synchro-card-bg: #D8D4D1;
-    --xyz-card-bg: #171717;
-    --link-card-bg: blue;
-    --spell-card-bg: #058974;
-    --trap-card-bg: #A61C72;
+    --normal-card-bg: Khaki;
+    --effect-card-bg: Chocolate;
+    --ritual-card-bg: CornFlowerBlue;
+    --fusion-card-bg: Purple;
+    --synchro-card-bg: LightGray;
+    --xyz-card-bg: Black;
+    --link-card-bg: MediumBlue;
+    --spell-card-bg: LimeGreen;
+    --trap-card-bg: DarkOrchid;
 }
 
 .normal-bg {
@@ -49,11 +49,11 @@
 }
 
 .pendulum-normal-bg {
-    background: linear-gradient(180deg, var(--normal-card-bg) 50%, var(--spell-card-bg) 50%) !important;
+    background: linear-gradient(180deg, var(--normal-card-bg) 30%, var(--spell-card-bg) 70%) !important;
 }
 
 .pendulum-effect-bg {
-    background: linear-gradient(180deg, var(--effect-card-bg) 50%, var(--spell-card-bg) 50%) !important;
+    background: linear-gradient(180deg, var(--effect-card-bg) 30%, var(--spell-card-bg) 70%) !important;
 }
 
 .link-bg {
