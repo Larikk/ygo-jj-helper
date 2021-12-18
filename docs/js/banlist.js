@@ -105,7 +105,11 @@ function cardsToTable(cards, status) {
         typeTd.classList.add(card.type.css)
 
         const nameTd = document.createElement("td")
-        nameTd.textContent = card.name
+        const link = document.createElement("a")
+        link.classList.add("link-dark")
+        link.href = "https://db.ygoprodeck.com/card/?search=" + card.name
+        link.textContent = card.name
+        nameTd.appendChild(link)
 
         const statusTd = document.createElement("td")
         statusTd.classList.add("text-center")
