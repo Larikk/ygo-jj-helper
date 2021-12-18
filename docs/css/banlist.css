@@ -1,3 +1,11 @@
+.card-name-column {
+    width: 100%;
+}
+
+.type-box {
+    width: 100%;
+}
+
 .spell-bg {
     background-color: green;
 }

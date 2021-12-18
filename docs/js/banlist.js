@@ -56,6 +56,8 @@ function create2002A() {
         banned: [
             Card.DarkHole,
             Card.ImperialOrder,
+            Card.DarkHole,
+
         ],
         limited: [],
         semilimited: [],
@@ -73,32 +75,50 @@ function cardsToTable(cards, status) {
     status = status.name
 
     const table = document.createElement("table")
+    table.classList.add("table", "table-hover", "table-striped", "table-bordered")
+
+    const thead = document.createElement("thead")
+    const tbody = document.createElement("tbody")
+
     const headerRow = document.createElement("tr")
 
-    for (const headerName of ["Card Type", "Card Name", "Status"]) {
+    // Card Type has non breaking space in the name
+    for (const headerName of ["Card\u{00A0}Type", "Card Name", "Status"]) {
         const th = document.createElement("th")
         th.textContent = headerName
         headerRow.appendChild(th)
     }
 
-    table.appendChild(headerRow)
+    headerRow.children[0].classList.add("text-center")
+    headerRow.children[1].classList.add("card-name-column")
+    headerRow.children[2].classList.add("text-center")
+
+    thead.appendChild(headerRow)
+    table.appendChild(thead)
 
     for (const card of cards) {
         const tr = document.createElement("tr")
 
         const typeTd = document.createElement("td")
-        typeTd.classList.add(card.type.css)
+        typeTd.classList.add("d-flex", "justify-content-center")
+
+        const typeSpan = document.createElement("span")
+        typeSpan.classList.add("type-box", card.type.css)
+        typeSpan.textContent = "\u{200B}" // zero width non-breaking space
+        typeTd.append(typeSpan)
 
         const nameTd = document.createElement("td")
         nameTd.textContent = card.name
 
         const statusTd = document.createElement("td")
+        statusTd.classList.add("text-center")
         statusTd.textContent = status
 
         tr.append(typeTd, nameTd, statusTd)
-        table.appendChild(tr)
+        tbody.appendChild(tr)
     }
 
+    table.appendChild(tbody)
     return table
 }
 
