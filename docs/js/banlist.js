@@ -54,7 +54,7 @@ class Type {
         this.RitualMonster,
         this.FusionMonster,
         this.SynchroMonster,
-        this.YXZMonster,
+        this.XYZMonster,
         this.PendulumNormalMonster,
         this.PendulumEffectMonster,
         this.LinkMonster,
