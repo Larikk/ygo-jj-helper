@@ -9,6 +9,16 @@ function makeIndexConstantAccess(array) {
     return map
 }
 
+// https://stackoverflow.com/a/12646864
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array
+}
+
 class Status {
     constructor(name, amount) {
         this.name = name
@@ -26,12 +36,28 @@ class Type {
         this.css = css
     }
 
+    static NormalMonster = new Type("normal-bg")
     static EffectMonster = new Type("effect-bg")
+    static RitualMonster = new Type("ritual-bg")
+    static FusionMonster = new Type("fusion-bg")
+    static SynchroMonster = new Type("synchro-bg")
+    static XYZMonster = new Type("xyz-bg")
+    static PendulumNormalMonster = new Type("pendulum-normal-bg")
+    static PendulumEffectMonster = new Type("pendulum-effect-bg")
+    static LinkMonster = new Type("link-bg")
     static Spell = new Type("spell-bg")
     static Trap = new Type("trap-bg")
 
     static _order = [
+        this.NormalMonster,
         this.EffectMonster,
+        this.RitualMonster,
+        this.FusionMonster,
+        this.SynchroMonster,
+        this.YXZMonster,
+        this.PendulumNormalMonster,
+        this.PendulumEffectMonster,
+        this.LinkMonster,
         this.Spell,
         this.Trap,
     ]
@@ -45,8 +71,36 @@ class Card {
         this.type = type
     }
 
+    // Just for testing colors and stuff
+    static DebugCards = [
+        new Card("7", Type.NormalMonster),
+        new Card("7", Type.EffectMonster),
+        new Card("7", Type.RitualMonster),
+        new Card("7", Type.FusionMonster),
+        new Card("7", Type.SynchroMonster),
+        new Card("7", Type.XYZMonster),
+        new Card("7", Type.PendulumNormalMonster),
+        new Card("7", Type.PendulumEffectMonster),
+        new Card("7", Type.LinkMonster),
+        new Card("7", Type.Spell),
+        new Card("7", Type.Trap),
+    ]
+
     static DarkHole = new Card("Dark Hole", Type.Spell)
     static ImperialOrder = new Card("Imperial Order", Type.Trap)
+}
+
+function createDebugList() {
+    return {
+        id: "Debug",
+        name: "Debug Part A",
+        banned: Card.DebugCards.slice(),
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned }
+        ],
+    }
 }
 
 function create2002A() {
@@ -69,6 +123,7 @@ function create2002A() {
 }
 
 const lists = [
+    createDebugList(),
     create2002A(),
 ]
 

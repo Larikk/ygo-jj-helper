@@ -12,10 +12,58 @@
     width: 100%;
 }
 
+:root {
+    --normal-card-bg: #CC9955;
+    --effect-card-bg: #BB5522;
+    --ritual-card-bg: #4870B6;
+    --fusion-card-bg: #813B93;
+    --synchro-card-bg: #D8D4D1;
+    --xyz-card-bg: #171717;
+    --link-card-bg: blue;
+    --spell-card-bg: #058974;
+    --trap-card-bg: #A61C72;
+}
+
+.normal-bg {
+    background: var(--normal-card-bg) !important
+}
+
+.effect-bg {
+    background: var(--effect-card-bg) !important;
+}
+
+.ritual-bg {
+    background: var(--ritual-card-bg) !important;
+}
+
+.fusion-bg {
+    background: var(--fusion-card-bg) !important;
+}
+
+.synchro-bg {
+    background: var(--synchro-card-bg) !important;
+}
+
+.xyz-bg {
+    background: var(--xyz-card-bg) !important;
+}
+
+.pendulum-normal-bg {
+    background: linear-gradient(180deg, var(--normal-card-bg) 50%, var(--spell-card-bg) 50%) !important;
+}
+
+.pendulum-effect-bg {
+    background: linear-gradient(180deg, var(--effect-card-bg) 50%, var(--spell-card-bg) 50%) !important;
+}
+
+.link-bg {
+    background: var(--link-card-bg) !important;
+}
+
 .spell-bg {
-    background-color: green !important;
+    background: var(--spell-card-bg) !important;
 }
 
 .trap-bg {
-    background-color: indigo !important;
+    background: var(--trap-card-bg) !important;
 }
