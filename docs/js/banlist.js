@@ -100,12 +100,7 @@ function cardsToTable(cards, status) {
         const tr = document.createElement("tr")
 
         const typeTd = document.createElement("td")
-        typeTd.classList.add("d-flex", "justify-content-center")
-
-        const typeSpan = document.createElement("span")
-        typeSpan.classList.add("type-box", card.type.css)
-        typeSpan.textContent = "\u{200B}" // zero width non-breaking space
-        typeTd.append(typeSpan)
+        typeTd.classList.add(card.type.css)
 
         const nameTd = document.createElement("td")
         nameTd.textContent = card.name
