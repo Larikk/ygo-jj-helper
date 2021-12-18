@@ -1,11 +1,23 @@
+.banlist-table {
+    outline: solid;
+    outline-width: 2px;
+}
+
+.banlist-table-header {
+    border-bottom: 2px;
+    border-style: solid;
+}
+
 .card-name-column {
     width: 100%;
 }
 
 .spell-bg {
     background-color: green !important;
+    border-bottom-width: 0px;
 }
 
 .trap-bg {
     background-color: indigo !important;
+    border-bottom-width: 0px;
 }

@@ -57,6 +57,7 @@ function create2002A() {
             Card.DarkHole,
             Card.ImperialOrder,
             Card.DarkHole,
+            Card.DarkHole,
 
         ],
         limited: [],
@@ -75,12 +76,13 @@ function cardsToTable(cards, status) {
     status = status.name
 
     const table = document.createElement("table")
-    table.classList.add("table", "table-hover", "table-striped", "table-bordered")
-
+    table.classList.add("table", "table-borderless", "table-hover", "banlist-table")
+ 
     const thead = document.createElement("thead")
     const tbody = document.createElement("tbody")
 
     const headerRow = document.createElement("tr")
+    headerRow.classList.add("banlist-table-header")
 
     // Card Type has non breaking space in the name
     for (const headerName of ["Card\u{00A0}Type", "Card Name", "Status"]) {
