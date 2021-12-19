@@ -166,8 +166,8 @@ function initBanlistSelect() {
 
 function onBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
-    const bandlistIndex = banlistSelect.value
-    const banlist = banlists[bandlistIndex]
+    const banlistIndex = banlistSelect.value
+    const banlist = banlists[banlistIndex]
     buildBanlist(banlist)
 }
 
