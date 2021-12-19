@@ -82,7 +82,7 @@ class Card {
     static DustTornado = new Card("Dust Tornado", Type.Trap)
     static SpearCretin = new Card("Spear Cretin", Type.EffectMonster)
     static RingOfDestruction = new Card("Ring of Destruction", Type.Trap)
-    static HarphiesFeatherDuster = new Card("Harphie's Feather Duster", Type.Spell)
+    static HarpiesFeatherDuster = new Card("Harpie's Feather Duster", Type.Spell)
     static AntiSpellFragrance = new Card("Anti-Spell Fragrance", Type.Trap)
     static DarkDustSpirit = new Card("Dark Dust Spirit", Type.EffectMonster)
     static MagicCylinder = new Card("Magic Cylinder", Type.Trap)
@@ -168,7 +168,7 @@ function create2003A() {
         semilimited: [],
         changes: [
             { card: Card.RingOfDestruction, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.HarphiesFeatherDuster, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.HarpiesFeatherDuster, from: Status.Unlimited, to: Status.Banned },
             { card: Card.AntiSpellFragrance, from: Status.Unlimited, to: Status.Banned },
             { card: Card.DarkDustSpirit, from: Status.Unlimited, to: Status.Banned },
             { card: Card.MagicCylinder, from: Status.Unlimited, to: Status.Banned },
