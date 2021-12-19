@@ -149,7 +149,28 @@ function buildBanlist(banlist) {
     container.replaceChildren(...domElements)
 }
 
+function initBanlistSelect() {
+    const banlistSelect = document.getElementById("banlist-selection")
+
+    for (let i = 0; i < banlists.length; i++) {
+        const banlist = banlists[i]
+
+        const option = document.createElement("option")
+        option.textContent = banlist.name
+        option.value = i
+        option.selected = i == banlists.length - 1 // select last one
+
+        banlistSelect.appendChild(option)
+    }
+}
+
+
+function onBanlistSelect() {
+
+}
+
 function load() {
+    initBanlistSelect()
     buildBanlist(banlists[0])
 }
 

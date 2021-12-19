@@ -19,7 +19,7 @@ p {
     height: 600px;
 }
 
-.year-selection-container {
+.inline-selection-with-text {
     display: flex;
     align-items: center;
     gap: 10px;
