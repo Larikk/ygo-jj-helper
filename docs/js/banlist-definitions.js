@@ -230,9 +230,29 @@ function create2003A() {
     }
 }
 
+function create2003B() {
+    return {
+        id: "2003B",
+        name: "2003 Part 2",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.MagicalScientist, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.YataGarasu, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.GuardianSphinx, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.HinoKaguTsuchi, from: Status.Limited, to: Status.Banned },
+            { card: Card.YamataDragon, from: Status.Limited, to: Status.Banned },
+            { card: Card.TorrentialTribute, from: Status.Banned, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
 const BANLISTS = [
     create2002A(),
     create2002B(),
     create2003A(),
+    create2003B(),
     //createDebugList(),
 ]
