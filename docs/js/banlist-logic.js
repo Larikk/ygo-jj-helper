@@ -16,7 +16,7 @@ const changeComparator = (a, b) => {
     }
 
     const toDelta = a.to.amount - b.to.amount
-    if (toDelta !== 0 ) {
+    if (toDelta !== 0) {
         return toDelta
     }
 
@@ -105,9 +105,9 @@ function buildBanlist(banlist) {
     const domElements = []
 
     const sections = [
-        {cards: banlist.banned, status: Status.Banned},
-        {cards: banlist.limited, status: Status.Limited},
-        {cards: banlist.semilimited, status: Status.Semilimited},
+        { cards: banlist.banned, status: Status.Banned },
+        { cards: banlist.limited, status: Status.Limited },
+        { cards: banlist.semilimited, status: Status.Semilimited },
     ]
 
     for (const section of sections) {
@@ -116,7 +116,7 @@ function buildBanlist(banlist) {
             header.textContent = section.status.name
 
             const table = cardsToTable(section.cards, section.status)
-            
+
             const div = document.createElement("div")
             div.append(header, table)
             domElements.push(div)
@@ -144,7 +144,7 @@ function buildBanlist(banlist) {
         div.append(header, notesList)
         domElements.push(div)
     }
-    
+
     const container = document.getElementById("banlist-container")
     container.replaceChildren(...domElements)
 }
