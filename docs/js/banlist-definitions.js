@@ -118,6 +118,6 @@ function create2002A() {
 }
 
 const BANLISTS = [
-    createDebugList(),
     create2002A(),
+    createDebugList(),
 ]
