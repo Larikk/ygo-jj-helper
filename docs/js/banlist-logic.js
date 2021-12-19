@@ -88,6 +88,18 @@ function buildChangeList(changes) {
     return changeList
 }
 
+function buildNotesList(notes) {
+    const notesList = document.createElement("ul")
+
+    for (const note of notes) {
+        const li = document.createElement("li")
+        li.textContent = note
+        notesList.appendChild(li)
+    }
+
+    return notesList
+}
+
 function buildBanlist(banlist) {
     const headerTag = "h3"
     const domElements = []
@@ -119,6 +131,17 @@ function buildBanlist(banlist) {
 
         const div = document.createElement("div")
         div.append(header, changeList)
+        domElements.push(div)
+    }
+
+    if (banlist.notes.length > 0) {
+        const header = document.createElement(headerTag)
+        header.textContent = "Notes"
+
+        const notesList = buildNotesList(banlist.notes)
+
+        const div = document.createElement("div")
+        div.append(header, notesList)
         domElements.push(div)
     }
     

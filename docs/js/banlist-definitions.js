@@ -90,6 +90,10 @@ function createDebugList() {
             { card: Card.DarkHole, from: Status.Semilimited, to: Status.Unlimited },
             { card: Card.DarkHole, from: Status.Banned, to: Status.Unlimited },
         ],
+        notes: [
+            "This is just for testing purposes",
+            "You should not be able to see this",
+        ]
     }
 }
 
@@ -109,6 +113,7 @@ function create2002A() {
         changes: [
             { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned }
         ],
+        notes: [],
     }
 }
 
