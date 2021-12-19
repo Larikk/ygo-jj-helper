@@ -96,11 +96,10 @@ class Card {
 
 function createDebugList() {
     let banned = Card.DebugCards.slice()
-    banned.push(...Card.DebugCards)
-    banned = shuffleArray(banned)
     return {
         id: "Debug",
         name: "Debug Part A",
+        debug: true,
         banned: banned,
         limited: [],
         semilimited: [
@@ -200,10 +199,20 @@ function create2003B() {
     }
 }
 
-const BANLISTS = [
+// Primary banlists
+// The concrete banned/limited cards are calculated by traversing
+// trough all changes
+const MAIN_BANLISTS = [
     create2002A(),
     create2002B(),
     create2003A(),
     create2003B(),
+]
+
+// Additional banlists
+// Banned/limited cards must be hardcoded
+const EXTRA_BANLISTS = [
     //createDebugList(),
 ]
+
+const ALL_BANLISTS = [...MAIN_BANLISTS, ...EXTRA_BANLISTS]

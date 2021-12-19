@@ -161,13 +161,13 @@ function buildBanlist(banlist) {
 function initBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
 
-    for (let i = 0; i < BANLISTS.length; i++) {
-        const banlist = BANLISTS[i]
+    for (let i = 0; i < ALL_BANLISTS.length; i++) {
+        const banlist = ALL_BANLISTS[i]
 
         const option = document.createElement("option")
         option.textContent = banlist.name
         option.value = i
-        option.selected = i == BANLISTS.length - 1 // select last one
+        option.selected = i == MAIN_BANLISTS.length - 1 || banlist.debug // select main banlist or debug one
 
         banlistSelect.appendChild(option)
     }
@@ -183,7 +183,7 @@ function initializeBanlists() {
     statusSetMap.set(Status.Limited, limited)
     statusSetMap.set(Status.Semilimited, semilimited)
 
-    for (const banlist of BANLISTS) {
+    for (const banlist of MAIN_BANLISTS) {
         for (const change of banlist.changes) {
             const card = change.card
             const from = change.from
@@ -220,7 +220,7 @@ function initializeBanlists() {
 function onBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
     const banlistIndex = banlistSelect.value
-    const banlist = BANLISTS[banlistIndex] // BANLISTS is in banlist-definitions.js
+    const banlist = ALL_BANLISTS[banlistIndex] // ALL_BANLISTS is in banlist-definitions.js
     buildBanlist(banlist)
 }
 
