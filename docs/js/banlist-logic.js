@@ -1,19 +1,3 @@
-// https://stackoverflow.com/a/12646864
-function shuffleArray(array) {
-    array = array.slice()
-
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-
-    return array
-}
-
-const lists = [
-    createDebugList(),
-    create2002A(),
-]
 
 const cardComparator = (a, b) => {
     const typeDelta = a.typeIndex - b.typeIndex
@@ -144,7 +128,7 @@ function buildBanlist(banlist) {
 }
 
 function load() {
-    buildBanlist(lists[0])
+    buildBanlist(banlists[0])
 }
 
 window.addEventListener("load", () => load());
