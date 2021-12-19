@@ -69,6 +69,29 @@ class Card {
 
     static DarkHole = new Card("Dark Hole", Type.Spell)
     static ImperialOrder = new Card("Imperial Order", Type.Trap)
+    static MirrorForce = new Card("Mirror Force", Type.Trap)
+    static Raigeki = new Card("Raigeki", Type.Spell)
+    static SnatchSteal = new Card("Snatch Steal", Type.Spell)
+    static TorrentialTribute = new Card("Torrential Tribute", Type.Trap)
+    static BarrelDragon = new Card("Barrel Dragon", Type.EffectMonster)
+    static CallOfTheHaunted = new Card("Call of the Haunted", Type.Trap)
+    static UltimateOffering = new Card("Ultimate Offering", Type.Trap)
+    static MorphingJar2 = new Card("Morphing Jar #2", Type.EffectMonster)
+    static GiantTrunade = new Card("Giant Trunade", Type.Spell)
+    static CyberJar = new Card("Cyber Jar", Type.EffectMonster)
+    static DustTornado = new Card("Dust Tornado", Type.Trap)
+    static SpearCretin = new Card("Spear Cretin", Type.EffectMonster)
+    static RingOfDestruction = new Card("Ring of Destruction", Type.Trap)
+    static HarphiesFeatherDuster = new Card("Harphie's Feather Duster", Type.Spell)
+    static AntiSpellFragrance = new Card("Anti-Spell Fragrance", Type.Trap)
+    static DarkDustSpirit = new Card("Dark Dust Spirit", Type.EffectMonster)
+    static MagicCylinder = new Card("Magic Cylinder", Type.Trap)
+    static HinoKaguTsuchi= new Card("Hino-Kagu-Tsuchi", Type.EffectMonster)
+    static YamataDragon = new Card("Yamata Dragon", Type.EffectMonster)
+    static MagicalScientist = new Card("Magical Scientist", Type.EffectMonster)
+    static YataGarasu = new Card("Yata-Garasu", Type.EffectMonster)
+    static GuardianSphinx = new Card("Guardian Sphinx", Type.EffectMonster)
+
 }
 
 function createDebugList() {
@@ -104,14 +127,148 @@ function create2002A() {
         banned: [
             Card.DarkHole,
             Card.ImperialOrder,
-            Card.DarkHole,
-            Card.DarkHole,
-
+            Card.MirrorForce,
+            Card.Raigeki,
+            Card.SnatchSteal,
+            Card.TorrentialTribute,
         ],
-        limited: [],
+        limited: [
+            Card.BarrelDragon,
+            Card.CallOfTheHaunted,
+        ],
         semilimited: [],
         changes: [
-            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned }
+            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.ImperialOrder, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.MirrorForce, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.Raigeki, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.SnatchSteal, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.TorrentialTribute, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.BarrelDragon, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.CallOfTheHaunted, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
+function create2002B() {
+    return {
+        id: "2002B",
+        name: "2002 Part 2",
+        banned: [
+            Card.DarkHole,
+            Card.ImperialOrder,
+            Card.MirrorForce,
+            Card.Raigeki,
+            Card.SnatchSteal,
+            Card.TorrentialTribute,
+            Card.UltimateOffering,
+            Card.MorphingJar2,
+            Card.GiantTrunade,
+        ],
+        limited: [
+            Card.BarrelDragon,
+            Card.CallOfTheHaunted,
+            Card.CyberJar,
+            Card.DustTornado,
+            Card.SpearCretin,
+        ],
+        semilimited: [],
+        changes: [
+            { card: Card.UltimateOffering, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.MorphingJar2, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.GiantTrunade, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.CyberJar, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.DustTornado, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.SpearCretin, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
+function create2003A() {
+    return {
+        id: "2003A",
+        name: "2003 Part 1",
+        banned: [
+            Card.DarkHole,
+            Card.ImperialOrder,
+            Card.MirrorForce,
+            Card.Raigeki,
+            Card.SnatchSteal,
+            Card.TorrentialTribute,
+            Card.UltimateOffering,
+            Card.MorphingJar2,
+            Card.GiantTrunade,
+            Card.RingOfDestruction,
+            Card.HarphiesFeatherDuster,
+            Card.AntiSpellFragrance,
+            Card.DarkDustSpirit,
+            Card.MagicCylinder,
+            Card.CyberJar,
+        ],
+        limited: [
+            Card.BarrelDragon,
+            Card.CallOfTheHaunted,
+            Card.DustTornado,
+            Card.SpearCretin,
+            Card.HinoKaguTsuchi,
+            Card.YamataDragon,
+        ],
+        semilimited: [],
+        changes: [
+            { card: Card.RingOfDestruction, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.HarphiesFeatherDuster, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.AntiSpellFragrance, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarkDustSpirit, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.MagicCylinder, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.CyberJar, from: Status.Limited, to: Status.Banned },
+            { card: Card.HinoKaguTsuchi, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.YamataDragon, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
+function create2003A() {
+    return {
+        id: "2003A",
+        name: "2003 Part 1",
+        banned: [
+            Card.DarkHole,
+            Card.ImperialOrder,
+            Card.MirrorForce,
+            Card.Raigeki,
+            Card.SnatchSteal,
+            Card.TorrentialTribute,
+            Card.UltimateOffering,
+            Card.MorphingJar2,
+            Card.GiantTrunade,
+            Card.RingOfDestruction,
+            Card.HarphiesFeatherDuster,
+            Card.AntiSpellFragrance,
+            Card.DarkDustSpirit,
+            Card.MagicCylinder,
+            Card.CyberJar,
+        ],
+        limited: [
+            Card.BarrelDragon,
+            Card.CallOfTheHaunted,
+            Card.DustTornado,
+            Card.SpearCretin,
+            Card.HinoKaguTsuchi,
+            Card.YamataDragon,
+        ],
+        semilimited: [],
+        changes: [
+            { card: Card.RingOfDestruction, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.HarphiesFeatherDuster, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.AntiSpellFragrance, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarkDustSpirit, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.MagicCylinder, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.CyberJar, from: Status.Limited, to: Status.Banned },
+            { card: Card.HinoKaguTsuchi, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.YamataDragon, from: Status.Unlimited, to: Status.Limited },
         ],
         notes: [],
     }
@@ -119,5 +276,7 @@ function create2002A() {
 
 const BANLISTS = [
     create2002A(),
-    createDebugList(),
+    create2002B(),
+    create2003A(),
+    //createDebugList(),
 ]
