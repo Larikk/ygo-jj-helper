@@ -30,7 +30,7 @@ function cardsToTable(cards, status) {
     cards.sort(cardComparator)
 
     const table = document.createElement("table")
-    table.classList.add("table", "table-borderless", "table-hover", "banlist-table")
+    table.classList.add("table", "table-borderless", "table-hover", "table-sm","banlist-table")
 
     const thead = document.createElement("thead")
     const tbody = document.createElement("tbody")
