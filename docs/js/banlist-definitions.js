@@ -230,50 +230,6 @@ function create2003A() {
     }
 }
 
-function create2003A() {
-    return {
-        id: "2003A",
-        name: "2003 Part 1",
-        banned: [
-            Card.DarkHole,
-            Card.ImperialOrder,
-            Card.MirrorForce,
-            Card.Raigeki,
-            Card.SnatchSteal,
-            Card.TorrentialTribute,
-            Card.UltimateOffering,
-            Card.MorphingJar2,
-            Card.GiantTrunade,
-            Card.RingOfDestruction,
-            Card.HarphiesFeatherDuster,
-            Card.AntiSpellFragrance,
-            Card.DarkDustSpirit,
-            Card.MagicCylinder,
-            Card.CyberJar,
-        ],
-        limited: [
-            Card.BarrelDragon,
-            Card.CallOfTheHaunted,
-            Card.DustTornado,
-            Card.SpearCretin,
-            Card.HinoKaguTsuchi,
-            Card.YamataDragon,
-        ],
-        semilimited: [],
-        changes: [
-            { card: Card.RingOfDestruction, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.HarphiesFeatherDuster, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.AntiSpellFragrance, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.DarkDustSpirit, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.MagicCylinder, from: Status.Unlimited, to: Status.Banned },
-            { card: Card.CyberJar, from: Status.Limited, to: Status.Banned },
-            { card: Card.HinoKaguTsuchi, from: Status.Unlimited, to: Status.Limited },
-            { card: Card.YamataDragon, from: Status.Unlimited, to: Status.Limited },
-        ],
-        notes: [],
-    }
-}
-
 const BANLISTS = [
     create2002A(),
     create2002B(),
