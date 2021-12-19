@@ -147,7 +147,7 @@ function cardsToTable(cards, status) {
     headerRow.classList.add("banlist-table-header")
 
     // Card Type has non breaking space in the name
-    for (const headerName of ["Card Type", "Card Name", "Status"]) {
+    for (const headerName of ["Card Type", "Card Name", "Current Status"]) {
         const th = document.createElement("th")
         th.textContent = headerName
         headerRow.appendChild(th)
