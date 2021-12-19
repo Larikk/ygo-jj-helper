@@ -27,7 +27,6 @@ const changeComparator = (a, b) => {
 
 function cardsToTable(cards, status) {
     status = status.name
-    cards.sort(cardComparator)
 
     const table = document.createElement("table")
     table.classList.add("table", "table-borderless", "table-hover", "table-sm","banlist-table")
@@ -174,56 +173,59 @@ function initBanlistSelect() {
     }
 }
 
-function constructFullBanlistFromChanges(selectedBanlistIndex) {
+function initializeBanlists() {
     const banned = new Set()
     const limited = new Set()
     const semilimited = new Set()
 
-    for (let i = 0; i <= selectedBanlistIndex; i++) {
-        const banlist = BANLISTS[i]
+    const statusSetMap = new Map()
+    statusSetMap.set(Status.Banned, banned)
+    statusSetMap.set(Status.Limited, limited)
+    statusSetMap.set(Status.Semilimited, semilimited)
 
+    for (const banlist of BANLISTS) {
         for (const change of banlist.changes) {
             const card = change.card
+            const from = change.from
             const to = change.to
 
-            if (to === Status.Banned) {
-                banned.add(card)
-                limited.delete(card)
-                semilimited.delete(card)
-            } else if (to === Status.Limited) {
-                banned.delete(card)
-                limited.add(card)
-                semilimited.delete(card)
-            } else if (to === Status.Semilimited) {
-                banned.delete(card)
-                limited.delete(card)
-                semilimited.add(card)
+            if (from === to) {
+                throw `${card.name} has same from and to values for change in banlist ${banlist.name}`
+            }
+
+            if (from === Status.Unlimited) {
+                if (banned.has(card) || limited.has(card) || semilimited.has(card)) {
+                    throw `${card.name} in ${banlist.name} was not unlimited previously`
+                }
             } else {
-                banned.delete(card)
-                limited.delete(card)
-                semilimited.delete(card)
+                const removed = statusSetMap.get(from).delete(card)
+                if (!removed) {
+                    throw `${card.name} in ${banlist.name} was not ${from.name} previously`
+                }
+            }
+
+            // If to is Unlimited the card should be deleted from the previous step
+            if (to !== Status.Unlimited) {
+                statusSetMap.get(to).add(card)
             }
         }
-    }
 
-    const banlist = BANLISTS[selectedBanlistIndex]
-    return {
-        banned: Array.from(banned),
-        limited: Array.from(limited),
-        semilimited: Array.from(semilimited),
-        changes: banlist.changes,
-        notes: banlist.notes,
+        banlist.banned = Array.from(banned).sort(cardComparator)
+        banlist.limited = Array.from(limited).sort(cardComparator)
+        banlist.section = Array.from(semilimited).sort(cardComparator)
+        banlist.changes.sort(changeComparator)
     }
 }
 
 function onBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
     const banlistIndex = banlistSelect.value
-    const banlist = constructFullBanlistFromChanges(banlistIndex) // BANLISTS is in banlist-definitions.js
+    const banlist = BANLISTS[banlistIndex] // BANLISTS is in banlist-definitions.js
     buildBanlist(banlist)
 }
 
 function load() {
+    initializeBanlists()
     initBanlistSelect()
     onBanlistSelect()
 }
