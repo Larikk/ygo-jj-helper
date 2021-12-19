@@ -92,7 +92,9 @@ function createDebugList() {
         name: "Debug Part A",
         banned: banned,
         limited: [],
-        semilimited: [],
+        semilimited: [
+            Card.DarkHole
+        ],
         changes: [
             { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned }
         ],
@@ -185,16 +187,34 @@ function cardsToTable(cards, status) {
     return table
 }
 
+function buildBanlist(banlist) {
+    const domElements = []
+
+    const sections = [
+        {cards: banlist.banned, status: Status.Banned},
+        {cards: banlist.limited, status: Status.Limited},
+        {cards: banlist.semilimited, status: Status.Semilimited},
+    ]
+
+    for (const section of sections) {
+        if (section.cards.length > 0) {
+            const header = document.createElement("h3")
+            header.textContent = section.status.name
+
+            const table = cardsToTable(section.cards, section.status)
+            
+            const div = document.createElement("div")
+            div.append(header, table)
+            domElements.push(div)
+        }
+    }
+    
+    const container = document.getElementById("banlist-container")
+    container.replaceChildren(...domElements)
+}
+
 function load() {
-    const divs = document.getElementsByClassName("text");
-    Array.from(divs).forEach(element => {
-        element.innerHTML = element.innerHTML.trim()
-    });
-
-
-    console.log(lists)
-    const table = cardsToTable(lists[0].banned, Status.Banned)
-    document.getElementsByClassName("root-container")[0].appendChild(table)
+    buildBanlist(lists[0])
 }
 
 window.addEventListener("load", () => load());
