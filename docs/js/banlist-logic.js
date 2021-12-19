@@ -25,6 +25,11 @@ const changeComparator = (a, b) => {
     return a.card.name.localeCompare(b.card.name)
 }
 
+function createCardHref(name) {
+    name = name.replace("#", "%23")
+    return YGOPRODECK_LINK_PREFIX + name
+}
+
 function cardsToTable(cards, status) {
     status = status.name
 
@@ -60,7 +65,7 @@ function cardsToTable(cards, status) {
         const nameTd = document.createElement("td")
         const link = document.createElement("a")
         link.classList.add("link-dark")
-        link.href = YGOPRODECK_LINK_PREFIX + card.name
+        link.href = createCardHref(card.name)
         link.textContent = card.name
         nameTd.appendChild(link)
 
@@ -84,7 +89,7 @@ function buildChangeList(changes) {
         const li = document.createElement("li")
     
         const link = document.createElement("a")
-        link.href = YGOPRODECK_LINK_PREFIX + change.card.name
+        link.href = createCardHref(change.card.name)
         link.textContent = change.card.name
         link.classList.add("link-dark")
     
