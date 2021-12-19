@@ -228,6 +228,11 @@ function load() {
     initializeBanlists()
     initBanlistSelect()
     onBanlistSelect()
+
+    Array.from(document.getElementsByClassName("hide-after-init")).forEach(e => e.hidden = true)
+
+    const formatContainer = document.getElementById("format-container")
+    formatContainer.hidden = false
 }
 
 window.addEventListener("load", () => load());
