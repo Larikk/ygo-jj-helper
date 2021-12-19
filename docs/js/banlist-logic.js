@@ -1,4 +1,6 @@
 
+const YGOPRODECK_LINK_PREFIX =  "https://db.ygoprodeck.com/card/?search="
+
 const cardComparator = (a, b) => {
     const typeDelta = a.typeIndex - b.typeIndex
 
@@ -59,7 +61,7 @@ function cardsToTable(cards, status) {
         const nameTd = document.createElement("td")
         const link = document.createElement("a")
         link.classList.add("link-dark")
-        link.href = "https://db.ygoprodeck.com/card/?search=" + card.name
+        link.href = YGOPRODECK_LINK_PREFIX + card.name
         link.textContent = card.name
         nameTd.appendChild(link)
 
@@ -81,7 +83,15 @@ function buildChangeList(changes) {
 
     for (const change of changes) {
         const li = document.createElement("li")
-        li.textContent = `${change.card.name}: ${change.from.name} \u{2794} ${change.to.name}`
+    
+        const link = document.createElement("a")
+        link.href = YGOPRODECK_LINK_PREFIX + change.card.name
+        link.textContent = change.card.name
+        link.classList.add("link-dark")
+    
+        const text = document.createTextNode(`: ${change.from.name} \u{2794} ${change.to.name}`)
+
+        li.append(link, text)
         changeList.appendChild(li)
     }
 
