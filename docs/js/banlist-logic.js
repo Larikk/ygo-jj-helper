@@ -77,7 +77,6 @@ function cardsToTable(cards, status) {
 
 function buildChangeList(changes) {
     changes.sort(changeComparator)
-    console.log(changes)
     const changeList = document.createElement("ul")
 
     for (const change of changes) {
