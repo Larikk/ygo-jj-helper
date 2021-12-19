@@ -174,10 +174,52 @@ function initBanlistSelect() {
     }
 }
 
+function constructFullBanlistFromChanges(selectedBanlistIndex) {
+    const banned = new Set()
+    const limited = new Set()
+    const semilimited = new Set()
+
+    for (let i = 0; i <= selectedBanlistIndex; i++) {
+        const banlist = BANLISTS[i]
+
+        for (const change of banlist.changes) {
+            const card = change.card
+            const to = change.to
+
+            if (to === Status.Banned) {
+                banned.add(card)
+                limited.delete(card)
+                semilimited.delete(card)
+            } else if (to === Status.Limited) {
+                banned.delete(card)
+                limited.add(card)
+                semilimited.delete(card)
+            } else if (to === Status.Semilimited) {
+                banned.delete(card)
+                limited.delete(card)
+                semilimited.add(card)
+            } else {
+                banned.delete(card)
+                limited.delete(card)
+                semilimited.delete(card)
+            }
+        }
+    }
+
+    const banlist = BANLISTS[selectedBanlistIndex]
+    return {
+        banned: Array.from(banned),
+        limited: Array.from(limited),
+        semilimited: Array.from(semilimited),
+        changes: banlist.changes,
+        notes: banlist.notes,
+    }
+}
+
 function onBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
     const banlistIndex = banlistSelect.value
-    const banlist = BANLISTS[banlistIndex] // BANLISTS is in banlist-definitions.js
+    const banlist = constructFullBanlistFromChanges(banlistIndex) // BANLISTS is in banlist-definitions.js
     buildBanlist(banlist)
 }
 
