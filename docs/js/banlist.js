@@ -96,7 +96,11 @@ function createDebugList() {
             Card.DarkHole
         ],
         changes: [
-            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned }
+            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Semilimited },
+            { card: Card.DarkHole, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarkHole, from: Status.Semilimited, to: Status.Unlimited },
+            { card: Card.DarkHole, from: Status.Banned, to: Status.Unlimited },
         ],
     }
 }
@@ -133,6 +137,20 @@ const cardComparator = (a, b) => {
     }
 
     return a.name.localeCompare(b.name)
+}
+
+const changeComparator = (a, b) => {
+    const fromDelta = a.from.amount - b.from.amount
+    if (fromDelta !== 0) {
+        return fromDelta
+    }
+
+    const toDelta = a.to.amount - b.to.amount
+    if (toDelta !== 0 ) {
+        return toDelta
+    }
+
+    return a.card.name.localeCompare(b.card.name)
 }
 
 function cardsToTable(cards, status) {
@@ -187,7 +205,22 @@ function cardsToTable(cards, status) {
     return table
 }
 
+function buildChangeList(changes) {
+    changes.sort(changeComparator)
+    console.log(changes)
+    const changeList = document.createElement("ul")
+
+    for (const change of changes) {
+        const li = document.createElement("li")
+        li.textContent = `${change.card.name}: ${change.from.name} \u{2794} ${change.to.name}`
+        changeList.appendChild(li)
+    }
+
+    return changeList
+}
+
 function buildBanlist(banlist) {
+    const headerTag = "h3"
     const domElements = []
 
     const sections = [
@@ -198,7 +231,7 @@ function buildBanlist(banlist) {
 
     for (const section of sections) {
         if (section.cards.length > 0) {
-            const header = document.createElement("h3")
+            const header = document.createElement(headerTag)
             header.textContent = section.status.name
 
             const table = cardsToTable(section.cards, section.status)
@@ -207,6 +240,17 @@ function buildBanlist(banlist) {
             div.append(header, table)
             domElements.push(div)
         }
+    }
+
+    if (banlist.changes.length > 0) {
+        const header = document.createElement(headerTag)
+        header.textContent = "Changes"
+
+        const changeList = buildChangeList(banlist.changes)
+
+        const div = document.createElement("div")
+        div.append(header, changeList)
+        domElements.push(div)
     }
     
     const container = document.getElementById("banlist-container")
