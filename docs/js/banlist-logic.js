@@ -164,14 +164,16 @@ function initBanlistSelect() {
     }
 }
 
-
 function onBanlistSelect() {
-
+    const banlistSelect = document.getElementById("banlist-selection")
+    const bandlistIndex = banlistSelect.value
+    const banlist = banlists[bandlistIndex]
+    buildBanlist(banlist)
 }
 
 function load() {
     initBanlistSelect()
-    buildBanlist(banlists[0])
+    onBanlistSelect()
 }
 
 window.addEventListener("load", () => load());
