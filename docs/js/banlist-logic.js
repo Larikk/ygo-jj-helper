@@ -152,13 +152,13 @@ function buildBanlist(banlist) {
 function initBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
 
-    for (let i = 0; i < banlists.length; i++) {
-        const banlist = banlists[i]
+    for (let i = 0; i < BANLISTS.length; i++) {
+        const banlist = BANLISTS[i]
 
         const option = document.createElement("option")
         option.textContent = banlist.name
         option.value = i
-        option.selected = i == banlists.length - 1 // select last one
+        option.selected = i == BANLISTS.length - 1 // select last one
 
         banlistSelect.appendChild(option)
     }
@@ -167,7 +167,7 @@ function initBanlistSelect() {
 function onBanlistSelect() {
     const banlistSelect = document.getElementById("banlist-selection")
     const banlistIndex = banlistSelect.value
-    const banlist = banlists[banlistIndex]
+    const banlist = BANLISTS[banlistIndex] // BANLISTS is in banlist-definitions.js
     buildBanlist(banlist)
 }
 

@@ -117,7 +117,7 @@ function create2002A() {
     }
 }
 
-const banlists = [
+const BANLISTS = [
     createDebugList(),
     create2002A(),
 ]
