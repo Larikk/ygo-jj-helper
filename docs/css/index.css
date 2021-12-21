@@ -1,6 +1,4 @@
 .root-container {
-    display: flex;
-    flex-flow: column;
     max-width: 960px;
     margin: auto;
     row-gap: 20px;

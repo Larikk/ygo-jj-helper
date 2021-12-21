@@ -16,39 +16,37 @@
 
 <body>
     <div class="root-container">
-        <div class="section">
-            <h1>YGO Junior Journey Helper</h1>
-            <p>This site validates your deck, lists all legal cards and provides several resources for the Junior Journey format.</p>
-            <p>Deck validation is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
+        <h1>YGO Junior Journey Helper</h1>
+        <p>This site validates your deck, lists all legal cards and provides several resources for the Junior Journey format.</p>
+        <p>Deck validation is powered by the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
 
-            Useful links:
-            <ul>
-                <li><a href="./ruleset.html">Ruleset</a></li>
-                <li><a href="./banlist.html">Banlist</a></li>
-                <li><a href="./cardsets.html">Release Timeline</a></li>
-                <li><a href="./rulingquestions.html">Open Ruling Questions</a></li>
-            </ul>
+        Useful links:
+        <ul>
+            <li><a href="./ruleset.html">Ruleset</a></li>
+            <li><a href="./banlist.html">Banlist</a></li>
+            <li><a href="./cardsets.html">Release Timeline</a></li>
+            <li><a href="./rulingquestions.html">Open Ruling Questions</a></li>
+        </ul>
 
-            <div class="selection-area">
-                <span>Select a year to upen up the legal card list and deck validation:</span>
-                <select id="year-selection" class="form-select" aria-label="Year selection" onchange="changeYear()">
-                    <option selected="true" value="0" hidden="true">Please select a year</option>
-                </select>
-            </div>
-
+        <div class="selection-area">
+            <span>Select a year to upen up the legal card list and deck validation:</span>
+            <select id="year-selection" class="form-select" aria-label="Year selection" onchange="changeYear()">
+                <option selected="true" value="0" hidden="true">Please select a year</option>
+            </select>
         </div>
 
-        <div class="show-during-loading d-flex justify-content-center" hidden="true">
+
+        <div class="show-during-loading d-flex justify-content-center mt-3" hidden="true">
             <div class="show-during-loading spinner-border" role="status" hidden="true"></div>
         </div>
 
-        <div class="section hide-during-loading" hidden="true">
+        <div class="hide-during-loading" hidden="true">
             <h2>Available Cards</h2>
             <p>Gallery with all legal cards: <a id="complete-gallery-link" href="./">Link</a></p>
             <p>Gallery with cards that were released in the selected year: <a id="singleyear-gallery-link" href="./">Link</a></p>
         </div>
 
-        <div class="section hide-during-loading" hidden="true">
+        <div class="hide-during-loading" hidden="true">
             <h2>Deck Validation</h2>
             Download the YDK file and paste its contents here. (Does not work reliably with EDOpro YDKs because alternative artworks have their own Passcode, YDKs from Duelingbook are fine.)
             <textarea id="ydk-input" class="form-control mt-1 mb-3"></textarea>
