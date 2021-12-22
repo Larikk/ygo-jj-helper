@@ -10,15 +10,8 @@
 }
 
 .navbar-logo {
-    color: var(--bs-body-color);
-    background-color: var(--bs-body-bg);
-    padding: 4px; 
-    border-radius: 4px;
     width: var(--logo-length);
     height: var(--logo-length);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .container-fluid {
