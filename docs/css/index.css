@@ -21,6 +21,10 @@
     padding: 0px var(--site-horizontal-padding);
 }
 
+h2 {
+    margin-top: 20px;
+}
+
 p {
     margin: 5px 0px;
 }
