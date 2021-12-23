@@ -1,6 +1,5 @@
 .banlist-table {
-    outline: solid;
-    outline-width: 2px;
+    border: 2px solid Black;
     white-space: nowrap;
 }
 
