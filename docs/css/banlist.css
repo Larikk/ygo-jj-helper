@@ -8,8 +8,14 @@
     border-style: solid;
 }
 
-.card-name-column {
+.name-column {
     width: 100%;
+    white-space: normal;
+}
+
+.status-column {
+    text-align: center;
+    vertical-align: middle;
 }
 
 :root {

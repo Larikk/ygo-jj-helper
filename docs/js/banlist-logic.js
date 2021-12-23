@@ -50,7 +50,6 @@ function cardsToTable(cards, status) {
     }
 
     headerRow.children[0].classList.add("text-center")
-    headerRow.children[1].classList.add("card-name-column")
     headerRow.children[2].classList.add("text-center")
 
     thead.appendChild(headerRow)
@@ -63,6 +62,7 @@ function cardsToTable(cards, status) {
         typeTd.classList.add(card.type.css)
 
         const nameTd = document.createElement("td")
+        nameTd.classList.add("name-column")
         const link = document.createElement("a")
         link.classList.add("link-dark")
         link.href = createCardHref(card.name)
@@ -70,7 +70,7 @@ function cardsToTable(cards, status) {
         nameTd.appendChild(link)
 
         const statusTd = document.createElement("td")
-        statusTd.classList.add("text-center")
+        statusTd.classList.add("status-column")
         statusTd.textContent = status
 
         tr.append(typeTd, nameTd, statusTd)
