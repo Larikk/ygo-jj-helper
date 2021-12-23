@@ -19,15 +19,15 @@
 }
 
 :root {
-    --normal-card-bg: Khaki;
-    --effect-card-bg: Chocolate;
-    --ritual-card-bg: CornFlowerBlue;
-    --fusion-card-bg: Purple;
-    --synchro-card-bg: LightGray;
+    --normal-card-bg: #f1c40f;
+    --effect-card-bg: #d35400;
+    --ritual-card-bg: #3498db;
+    --fusion-card-bg: #8e44ad;
+    --synchro-card-bg: #ecf0f1;
     --xyz-card-bg: Black;
-    --link-card-bg: MediumBlue;
-    --spell-card-bg: LimeGreen;
-    --trap-card-bg: DarkOrchid;
+    --link-card-bg: #2980b9;
+    --spell-card-bg: #2ecc71;
+    --trap-card-bg: #9b59b6;
 }
 
 .normal-bg {
