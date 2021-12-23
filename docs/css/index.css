@@ -44,10 +44,6 @@ p {
     gap: 1em;
 }
 
-#year-selection {
-    max-width: 200px;
-}
-
 #validation-result {
     white-space: pre-line;
 }

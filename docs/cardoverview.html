@@ -47,7 +47,7 @@
 
         <div class="selection-area">
             <span>Select a year to upen up the legal card list and deck validation:</span>
-            <select id="year-selection" class="form-select" aria-label="Year selection" onchange="changeYear()">
+            <select id="year-selection" class="form-select w-25" aria-label="Year selection" onchange="changeYear()">
                 <option selected="true" value="0" hidden="true">Please select a year</option>
             </select>
         </div>
@@ -65,9 +65,12 @@
         </div>
 
         <div class="hide-during-loading" hidden="true">
-            <h2>Deck Validation</h2>
-            Download the YDK file and paste its contents here. (Does not work reliably with EDOpro YDKs because
-            alternative artworks have their own Passcode, YDKs from Duelingbook are fine.)
+            <h2>Deck Validation [Experimental]</h2>
+            <p>
+                Takes the contents of a YDK file and checks whether the included cards were available in the selected year.
+                Not all YDK files are supported; Some applications/web sites use unofficial passcodes for alternative artworks (like EDOpro) which this tool does not support.
+                YDKs from Duelingbook are fine though.
+            </p>
             <textarea id="ydk-input" class="form-control mt-1 mb-3"></textarea>
             <button type="button" class="btn btn-primary mb-3" id="validate-ydk-button"
                 onclick="validateYdk()">Validate</button>
