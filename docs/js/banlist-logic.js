@@ -217,7 +217,7 @@ function initializeBanlists() {
 
         banlist.banned = Array.from(banned).sort(cardComparator)
         banlist.limited = Array.from(limited).sort(cardComparator)
-        banlist.section = Array.from(semilimited).sort(cardComparator)
+        banlist.semilimited = Array.from(semilimited).sort(cardComparator)
         banlist.changes.sort(changeComparator)
     }
 }
