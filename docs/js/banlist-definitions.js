@@ -222,6 +222,7 @@ function create2004A() {
             { card: Card.ChaosEmperorDragonEnvoyOfTheEnd, from: Status.Unlimited, to: Status.Banned },
             { card: Card.GracefulCharity, from: Status.Unlimited, to: Status.Banned },
             { card: Card.SwordsOfRevealingLight, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.SinisterSerpent, from: Status.Unlimited, to: Status.Limited },
             { card: Card.DarkHole, from: Status.Banned, to: Status.Limited },
             { card: Card.LevelLimitAreaB, from: Status.Unlimited, to: Status.Limited },
             { card: Card.BarrelDragon, from: Status.Limited, to: Status.Unlimited },
