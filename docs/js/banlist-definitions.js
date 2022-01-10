@@ -91,6 +91,15 @@ class Card {
     static MagicalScientist = new Card("Magical Scientist", Type.EffectMonster)
     static YataGarasu = new Card("Yata-Garasu", Type.EffectMonster)
     static GuardianSphinx = new Card("Guardian Sphinx", Type.EffectMonster)
+    static PainfulChoice = new Card("Painful Choice", Type.Spell)
+    static DarkMagicianOfChaos = new Card("Dark Magician of Chaos", Type.EffectMonster)
+    static BlackLusterSoldierEnvoyOfTheBeginning = new Card("Black Luster Soldier - Envoy of the Beginning", Type.EffectMonster)
+    static ChaosEmperorDragonEnvoyOfTheEnd = new Card("Chaos Emperor Dragon - Envoy of the End", Type.EffectMonster)
+    static GracefulCharity = new Card("Graceful Charity", Type.Spell)
+    static SwordsOfRevealingLight = new Card("Swords of Revealing Light", Type.Spell)
+    static SinisterSerpent = new Card("Sinister Serpent", Type.EffectMonster)
+    static LevelLimitAreaB = new Card("Level Limit - Area B", Type.Spell)
+    static ChaosSorcerer = new Card("Chaos Sorcerer", Type.EffectMonster)
 
 }
 
@@ -199,6 +208,29 @@ function create2003B() {
     }
 }
 
+function create2004A() {
+    return {
+        id: "2004A",
+        name: "2004 Part 1",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.PainfulChoice, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarkMagicianOfChaos, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.BlackLusterSoldierEnvoyOfTheBeginning, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.ChaosEmperorDragonEnvoyOfTheEnd, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.GracefulCharity, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.SwordsOfRevealingLight, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarkHole, from: Status.Banned, to: Status.Limited },
+            { card: Card.LevelLimitAreaB, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.BarrelDragon, from: Status.Limited, to: Status.Unlimited },
+            { card: Card.ChaosSorcerer, from: Status.Unlimited, to: Status.Semilimited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -207,6 +239,7 @@ const MAIN_BANLISTS = [
     create2002B(),
     create2003A(),
     create2003B(),
+    create2004A(),
 ]
 
 // Additional banlists
