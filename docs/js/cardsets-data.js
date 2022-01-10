@@ -3558,5 +3558,9 @@ const cardsets = [
     {
         "date": "2021-12-02",
         "name": "Brothers of Legend"
+    },
+    {
+        "date": "2022-02-24",
+        "name": "Hidden Arsenal: Chapter 1"
     }
 ]
