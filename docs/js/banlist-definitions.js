@@ -100,6 +100,16 @@ class Card {
     static SinisterSerpent = new Card("Sinister Serpent", Type.EffectMonster)
     static LevelLimitAreaB = new Card("Level Limit - Area B", Type.Spell)
     static ChaosSorcerer = new Card("Chaos Sorcerer", Type.EffectMonster)
+    static BlowbackDragon = new Card("Blowback Dragon", Type.EffectMonster)
+    static WitchOfTheBlackForest = new Card("Witch of the Black Forest", Type.EffectMonster)
+    static SkillDrain = new Card("Skill Drain", Type.Trap)
+    static CardOfSafeReturn = new Card("Card of Safe Return", Type.Spell)
+    static PotOfGreed = new Card("Pot of Greed", Type.Spell)
+    static ColdWave = new Card("Cold Wave", Type.Spell)
+    static HeavyStorm = new Card("Heavy Storm", Type.Spell)
+    static TheCreator = new Card("The Creator", Type.EffectMonster)
+    static Metamorphosis = new Card("Metamorphosis", Type.Spell)
+    static Jinzo = new Card("Jinzo", Type.EffectMonster)
 
 }
 
@@ -232,6 +242,32 @@ function create2004A() {
     }
 }
 
+function create2004B() {
+    return {
+        id: "2004B",
+        name: "2004 Part 2",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.BarrelDragon, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.BlowbackDragon, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.WitchOfTheBlackForest, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.SkillDrain, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.CardOfSafeReturn, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.PotOfGreed, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.ColdWave, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.HeavyStorm, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.GiantTrunade, from: Status.Banned, to: Status.Limited },
+            { card: Card.TheCreator, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.Metamorphosis, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.Jinzo, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.MirrorForce, from: Status.Banned, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -241,6 +277,7 @@ const MAIN_BANLISTS = [
     create2003A(),
     create2003B(),
     create2004A(),
+    create2004B(),
 ]
 
 // Additional banlists
