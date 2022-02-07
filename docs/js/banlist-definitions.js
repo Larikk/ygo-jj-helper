@@ -110,6 +110,11 @@ class Card {
     static TheCreator = new Card("The Creator", Type.EffectMonster)
     static Metamorphosis = new Card("Metamorphosis", Type.Spell)
     static Jinzo = new Card("Jinzo", Type.EffectMonster)
+    static ChangeOfHeart = new Card("Change of Heart", Type.Spell)
+    static CyberStein = new Card("Cyber-Stein", Type.EffectMonster)
+    static AncientGearGolem = new Card("Ancient Gear Golem", Type.EffectMonster)
+    static MonsterReborn = new Card("Monster Reborn", Type.Spell)
+    static SolemnJudgement = new Card("Solemn Judgement", Type.Trap)
 
 }
 
@@ -268,6 +273,28 @@ function create2004B() {
     }
 }
 
+function create2005A() {
+    return {
+        id: "2005B",
+        name: "2005 Part 1",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.ChangeOfHeart, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.CyberStein, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.AncientGearGolem, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.BarrelDragon, from: Status.Limited, to: Status.Banned },
+            { card: Card.BlowbackDragon, from: Status.Limited, to: Status.Banned },
+            { card: Card.MirrorForce, from: Status.Limited, to: Status.Unlimited },
+            { card: Card.TorrentialTribute, from: Status.Limited, to: Status.Unlimited },
+            { card: Card.MonsterReborn, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.SolemnJudgement, from: Status.Unlimited, to: Status.Banned },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -278,6 +305,7 @@ const MAIN_BANLISTS = [
     create2003B(),
     create2004A(),
     create2004B(),
+    create2005A(),
 ]
 
 // Additional banlists
