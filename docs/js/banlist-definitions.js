@@ -115,6 +115,8 @@ class Card {
     static AncientGearGolem = new Card("Ancient Gear Golem", Type.EffectMonster)
     static MonsterReborn = new Card("Monster Reborn", Type.Spell)
     static SolemnJudgement = new Card("Solemn Judgement", Type.Trap)
+    static LimiterRemoval = new Card("Limiter Removal", Type.Spell)
+    static DeckDevastationVirus = new Card("Deck Devastation Virus", Type.Trap)
 
 }
 
@@ -275,7 +277,7 @@ function create2004B() {
 
 function create2005A() {
     return {
-        id: "2005B",
+        id: "2005A",
         name: "2005 Part 1",
         banned: [],
         limited: [],
@@ -295,6 +297,22 @@ function create2005A() {
     }
 }
 
+function create2005B() {
+    return {
+        id: "2005B",
+        name: "2005 Part 2",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.LimiterRemoval, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DeckDevastationVirus, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DustTornado, from: Status.Limited, to: Status.Semilimited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -306,6 +324,7 @@ const MAIN_BANLISTS = [
     create2004A(),
     create2004B(),
     create2005A(),
+    create2005B(),
 ]
 
 // Additional banlists
