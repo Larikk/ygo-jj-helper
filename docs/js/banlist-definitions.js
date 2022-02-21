@@ -117,6 +117,7 @@ class Card {
     static SolemnJudgement = new Card("Solemn Judgement", Type.Trap)
     static LimiterRemoval = new Card("Limiter Removal", Type.Spell)
     static DeckDevastationVirus = new Card("Deck Devastation Virus", Type.Trap)
+    static TylerTheGreatWarrior = new Card("Tyler the Great Warrior", Type.EffectMonster)
 
 }
 
@@ -308,6 +309,7 @@ function create2005B() {
             { card: Card.LimiterRemoval, from: Status.Unlimited, to: Status.Banned },
             { card: Card.DeckDevastationVirus, from: Status.Unlimited, to: Status.Banned },
             { card: Card.DustTornado, from: Status.Limited, to: Status.Semilimited },
+            { card: Card.TylerTheGreatWarrior, from: Status.Unlimited, to: Status.Limited },
         ],
         notes: [],
     }
