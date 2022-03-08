@@ -3437,6 +3437,10 @@ const cardsets = [
     },
     {
         "date": "2021-02-18",
+        "name": "OTS Tournament Pack 15 (POR)"
+    },
+    {
+        "date": "2021-02-18",
         "name": "Structure Deck: Freezing Chains"
     },
     {
@@ -3482,6 +3486,10 @@ const cardsets = [
     {
         "date": "2021-06-09",
         "name": "OTS Tournament Pack 16"
+    },
+    {
+        "date": "2021-06-09",
+        "name": "OTS Tournament Pack 16 (POR)"
     },
     {
         "date": "2021-06-17",
@@ -3533,6 +3541,10 @@ const cardsets = [
     },
     {
         "date": "2021-10-14",
+        "name": "OTS Tournament Pack 17 (POR)"
+    },
+    {
+        "date": "2021-10-14",
         "name": "Structure Deck: Cyber Strike"
     },
     {
@@ -3558,6 +3570,26 @@ const cardsets = [
     {
         "date": "2021-12-02",
         "name": "Brothers of Legend"
+    },
+    {
+        "date": "2022-01-27",
+        "name": "The Grand Creators"
+    },
+    {
+        "date": "2022-02-01",
+        "name": "The Lost Art Promotion 2022"
+    },
+    {
+        "date": "2022-02-01",
+        "name": "The Lost Art Promotion 2022 A"
+    },
+    {
+        "date": "2022-02-10",
+        "name": "Battle of Chaos"
+    },
+    {
+        "date": "2022-02-17",
+        "name": "OTS Tournament Pack 18"
     },
     {
         "date": "2022-02-24",
