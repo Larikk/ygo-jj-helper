@@ -118,6 +118,10 @@ class Card {
     static LimiterRemoval = new Card("Limiter Removal", Type.Spell)
     static DeckDevastationVirus = new Card("Deck Devastation Virus", Type.Trap)
     static TylerTheGreatWarrior = new Card("Tyler the Great Warrior", Type.EffectMonster)
+    static SuperConductorTyranno = new Card("Super Conductor Tyranno", Type.EffectMonster)
+    static SangaOfTheThunder = new Card("Sanga of the Thunder", Type.EffectMonster)
+    static Suijin = new Card("Suijin", Type.EffectMonster)
+    static Kazejin = new Card("Kazejin", Type.EffectMonster)
 
 }
 
@@ -315,6 +319,24 @@ function create2005B() {
     }
 }
 
+function create2006A() {
+    return {
+        id: "2006A",
+        name: "2006 Part 1",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.ChaosSorcerer, from: Status.Semilimited, to: Status.Unlimited },
+            { card: Card.SangaOfTheThunder, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.Kazejin, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.Suijin, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.SuperConductorTyranno, from: Status.Unlimited, to: Status.Banned },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -327,6 +349,7 @@ const MAIN_BANLISTS = [
     create2004B(),
     create2005A(),
     create2005B(),
+    create2006A(),
 ]
 
 // Additional banlists
