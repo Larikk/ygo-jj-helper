@@ -367,7 +367,7 @@ function create2006B() {
             { card: Card.BrainControl, from: Status.Unlimited, to: Status.Limited },
             { card: Card.GravityBind, from: Status.Unlimited, to: Status.Limited },
             { card: Card.Stormshooter, from: Status.Unlimited, to: Status.Semilimited },
-            { card: Card.BesTetran, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.BesTetran, from: Status.Unlimited, to: Status.Semilimited },
         ],
         notes: [],
     }
