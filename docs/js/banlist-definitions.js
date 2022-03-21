@@ -122,6 +122,17 @@ class Card {
     static SangaOfTheThunder = new Card("Sanga of the Thunder", Type.EffectMonster)
     static Suijin = new Card("Suijin", Type.EffectMonster)
     static Kazejin = new Card("Kazejin", Type.EffectMonster)
+    static FiberJar = new Card("Fiber Jar", Type.EffectMonster)
+    static UltimateTyranno = new Card("Ultimate Tyranno", Type.EffectMonster)
+    static FlameOgre = new Card("Flame Ogre", Type.EffectMonster)
+    static DelinquentDuo = new Card("Delinquent Duo", Type.EffectMonster)
+    static SmashingGrounds = new Card("Smashing Ground", Type.Spell)
+    static MessengerOfPeace = new Card("Messenger of Peace", Type.Spell)
+    static FutureFusion = new Card("Future Fusion", Type.Spell)
+    static BrainControl = new Card("Brain Control", Type.Spell)
+    static GravityBind = new Card("Gravity Bind", Type.Trap)
+    static Stormshooter = new Card("Storm Shooter", Type.EffectMonster)
+    static BesTetran = new Card("B.E.S. Tetran", Type.EffectMonster)
 
 }
 
@@ -337,6 +348,31 @@ function create2006A() {
     }
 }
 
+function create2006B() {
+    return {
+        id: "2006B",
+        name: "2006 Part 2",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.FiberJar, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.UltimateTyranno, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.FlameOgre, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DelinquentDuo, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.WitchOfTheBlackForest, from: Status.Limited, to: Status.Banned },
+            { card: Card.SmashingGrounds, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.MessengerOfPeace, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.FutureFusion, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.BrainControl, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.GravityBind, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.Stormshooter, from: Status.Unlimited, to: Status.Semilimited },
+            { card: Card.BesTetran, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -350,6 +386,7 @@ const MAIN_BANLISTS = [
     create2005A(),
     create2005B(),
     create2006A(),
+    create2006B(),
 ]
 
 // Additional banlists
