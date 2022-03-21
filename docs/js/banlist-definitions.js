@@ -86,7 +86,7 @@ class Card {
     static AntiSpellFragrance = new Card("Anti-Spell Fragrance", Type.Trap)
     static DarkDustSpirit = new Card("Dark Dust Spirit", Type.EffectMonster)
     static MagicCylinder = new Card("Magic Cylinder", Type.Trap)
-    static HinoKaguTsuchi= new Card("Hino-Kagu-Tsuchi", Type.EffectMonster)
+    static HinoKaguTsuchi = new Card("Hino-Kagu-Tsuchi", Type.EffectMonster)
     static YamataDragon = new Card("Yamata Dragon", Type.EffectMonster)
     static MagicalScientist = new Card("Magical Scientist", Type.EffectMonster)
     static YataGarasu = new Card("Yata-Garasu", Type.EffectMonster)
