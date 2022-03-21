@@ -123,7 +123,6 @@ function buildGalleryLink(startYear, endYear) {
 
     const params = {
         "view": "Gallery",
-        "format": "tcg",
         "dateregion": "tcg_date",
         "startdate": startYear + "-01-01",
         "enddate": endYear + "-12-31",
