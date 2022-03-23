@@ -125,7 +125,7 @@ class Card {
     static FiberJar = new Card("Fiber Jar", Type.EffectMonster)
     static UltimateTyranno = new Card("Ultimate Tyranno", Type.EffectMonster)
     static FlameOgre = new Card("Flame Ogre", Type.EffectMonster)
-    static DelinquentDuo = new Card("Delinquent Duo", Type.EffectMonster)
+    static DelinquentDuo = new Card("Delinquent Duo", Type.Spell)
     static SmashingGrounds = new Card("Smashing Ground", Type.Spell)
     static MessengerOfPeace = new Card("Messenger of Peace", Type.Spell)
     static FutureFusion = new Card("Future Fusion", Type.Spell)
