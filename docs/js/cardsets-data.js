@@ -3248,7 +3248,7 @@ const cardsets = [
         "name": "Eternity Code Premiere! promotional card"
     },
     {
-        "date": "2020-05-15",
+        "date": "2020-05-14",
         "name": "Speed Duel Starter Decks: Match of the Millennium"
     },
     {
@@ -3594,5 +3594,9 @@ const cardsets = [
     {
         "date": "2022-02-24",
         "name": "Hidden Arsenal: Chapter 1"
+    },
+    {
+        "date": "2022-05-05",
+        "name": "Ghosts From the Past: The 2nd Haunting"
     }
 ]
