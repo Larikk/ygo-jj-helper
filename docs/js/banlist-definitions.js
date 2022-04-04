@@ -133,6 +133,10 @@ class Card {
     static GravityBind = new Card("Gravity Bind", Type.Trap)
     static Stormshooter = new Card("Storm Shooter", Type.EffectMonster)
     static BesTetran = new Card("B.E.S. Tetran", Type.EffectMonster)
+    static CrushCardVirus = new Card("Crush Card Virus", Type.Trap)
+    static EradicatorEpidemicVirus = new Card("Eradicator Epidemic Virus", Type.Trap)
+    static LightAndDarknessDragon = new Card("Light and Darkness Dragon", Type.EffectMonster)
+    static PrematureBurial = new Card("Premature Burial", Type.Spell)
 
 }
 
@@ -373,6 +377,24 @@ function create2006B() {
     }
 }
 
+function create2007A() {
+    return {
+        id: "2007A",
+        name: "2007 Part 1",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.CrushCardVirus, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.EradicatorEpidemicVirus, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.LightAndDarknessDragon, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.PrematureBurial, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.Jinzo, from: Status.Limited, to: Status.Semilimited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -387,6 +409,7 @@ const MAIN_BANLISTS = [
     create2005B(),
     create2006A(),
     create2006B(),
+    create2007A(),
 ]
 
 // Additional banlists
