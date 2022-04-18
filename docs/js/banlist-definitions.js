@@ -137,6 +137,10 @@ class Card {
     static EradicatorEpidemicVirus = new Card("Eradicator Epidemic Virus", Type.Trap)
     static LightAndDarknessDragon = new Card("Light and Darkness Dragon", Type.EffectMonster)
     static PrematureBurial = new Card("Premature Burial", Type.Spell)
+    static CloudianEyeOfTheTyphoon = new Card("Cloudian - Eye of the Typhoon", Type.EffectMonster)
+    static UltimateObedientFiend = new Card("Ultimate Obedient Fiend", Type.EffectMonster)
+    static DimensionWall = new Card("Dimension Wall", Type.Trap)
+    static ForcefulSentry = new Card("The Forceful Sentry", Type.Spell)
 
 }
 
@@ -395,6 +399,31 @@ function create2007A() {
     }
 }
 
+function create2007B() {
+    return {
+        id: "2007B",
+        name: "2007 Part 2",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.CloudianEyeOfTheTyphoon, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.UltimateObedientFiend, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.ForcefulSentry, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.ColdWave, from: Status.Limited, to: Status.Banned },
+            { card: Card.SangaOfTheThunder, from: Status.Limited, to: Status.Banned },
+            { card: Card.Suijin, from: Status.Limited, to: Status.Banned },
+            { card: Card.Kazejin, from: Status.Limited, to: Status.Banned },
+            { card: Card.BesTetran, from: Status.Semilimited, to: Status.Limited },
+            { card: Card.Jinzo, from: Status.Semilimited, to: Status.Limited },
+            { card: Card.Stormshooter, from: Status.Semilimited, to: Status.Limited },
+            { card: Card.DustTornado, from: Status.Semilimited, to: Status.Limited },
+            { card: Card.DimensionWall, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -410,6 +439,7 @@ const MAIN_BANLISTS = [
     create2006A(),
     create2006B(),
     create2007A(),
+    create2007B(),
 ]
 
 // Additional banlists
