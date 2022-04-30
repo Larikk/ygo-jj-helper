@@ -3248,7 +3248,7 @@ const cardsets = [
         "name": "Eternity Code Premiere! promotional card"
     },
     {
-        "date": "2020-05-14",
+        "date": "2020-05-15",
         "name": "Speed Duel Starter Decks: Match of the Millennium"
     },
     {
@@ -3568,6 +3568,10 @@ const cardsets = [
         "name": "Maximum Gold: El Dorado"
     },
     {
+        "date": "2021-12-01",
+        "name": "Blue-Eyes Alternative White Dragon Sweepstakes"
+    },
+    {
         "date": "2021-12-02",
         "name": "Brothers of Legend"
     },
@@ -3594,6 +3598,10 @@ const cardsets = [
     {
         "date": "2022-02-24",
         "name": "Hidden Arsenal: Chapter 1"
+    },
+    {
+        "date": "2022-04-14",
+        "name": "Structure Deck: Albaz Strike"
     },
     {
         "date": "2022-05-05",
