@@ -3,7 +3,7 @@ function format(cardsets) {
 
     for (const set of cardsets) {
         out.push({
-            "date": new Date(set["date"]).toLocaleDateString(),
+            "date": new Date(set["date"] + "T00:00:00").toLocaleDateString(),
             "name": set["name"],
         });
     }
@@ -29,7 +29,7 @@ function load() {
     table.appendChild(header);
 
     const keys = ["date", "name"]
-     for (const cardset of sets) {
+    for (const cardset of sets) {
         const tr = document.createElement("TR");
         for (const key of keys) {
             const td = document.createElement("TD");
