@@ -141,6 +141,15 @@ class Card {
     static UltimateObedientFiend = new Card("Ultimate Obedient Fiend", Type.EffectMonster)
     static DimensionWall = new Card("Dimension Wall", Type.Trap)
     static ForcefulSentry = new Card("The Forceful Sentry", Type.Spell)
+    static DarkArmedDragon = new Card("Dark Armed Dragon", Type.EffectMonster)
+    static VanitiysRuler = new Card("Vanity's Ruler", Type.EffectMonster)
+    static DarklordZerato = new Card("Darklord Zerato", Type.EffectMonster)
+    static KurazTheLightMonarch = new Card("Kuraz the Light Monarch", Type.EffectMonster)
+    static GorzTheEmissaryOfDarkness = new Card("Gorz the Emissary of Darkness", Type.EffectMonster)
+    static ArcanaForceTheWorld = new Card("Arcana Force XXI - The World", Type.EffectMonster)
+    static SplendidVenus = new Card("Splendid Venus", Type.EffectMonster)
+    static DimensionFusion = new Card("Dimension Fusion", Type.Spell)
+    static Honest = new Card("Honest", Type.EffectMonster)
 
 }
 
@@ -424,6 +433,29 @@ function create2007B() {
     }
 }
 
+function create2008A() {
+    return {
+        id: "2008A",
+        name: "2008 Part 1",
+        banned: [],
+        limited: [],
+        semilimited: [],
+        changes: [
+            { card: Card.BrainControl, from: Status.Limited, to: Status.Banned },
+            { card: Card.DarkArmedDragon, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.VanitiysRuler, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DarklordZerato, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.KurazTheLightMonarch, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.SplendidVenus, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.DimensionFusion, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.Honest, from: Status.Unlimited, to: Status.Banned },
+            { card: Card.GorzTheEmissaryOfDarkness, from: Status.Unlimited, to: Status.Limited },
+            { card: Card.ArcanaForceTheWorld, from: Status.Unlimited, to: Status.Limited },
+        ],
+        notes: [],
+    }
+}
+
 // Primary banlists
 // The concrete banned/limited cards are calculated by traversing
 // trough all changes
@@ -440,6 +472,7 @@ const MAIN_BANLISTS = [
     create2006B(),
     create2007A(),
     create2007B(),
+    create2008A(),
 ]
 
 // Additional banlists
