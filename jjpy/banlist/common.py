@@ -145,6 +145,7 @@ def buildBanlists(cardDb):
     lfLists = []
     for changeFile in changeFiles:
         lfList = applyChanges(prevList, changeFile)
+        lfList["name"] = changeFile["name"]
         lfLists.append(lfList)
         prevList = lfList
 
