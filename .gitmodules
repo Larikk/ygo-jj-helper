@@ -1,0 +1,3 @@
+[submodule "EDO_CDB"]
+	path = EDO_CDB
+	url = https://github.com/ProjectIgnis/DeltaUtopia
