@@ -2,7 +2,7 @@ import json
 import sqlite3
 import os
 
-DB_DIR = "EDO_CDB/"
+DB_DIR = "EDO-CDB/"
 
 SELECT_STATEMENT = """
     SELECT datas.id, datas.alias, texts.name
