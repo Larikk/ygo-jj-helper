@@ -51,7 +51,7 @@ def getUnofficialCardsMap():
     map = dict()
 
     for hit in hits:
-        mainId = hit["mainId"]
+        mainId = hit["main_id"]
 
         if mainId not in map:
             map[mainId] = []
@@ -155,7 +155,7 @@ def buildDatabase():
         if "card_sets" not in card:
             continue
 
-        releaseDate = getFirstRelease(card, cardSetsMap)
+        firstRelease = getFirstRelease(card, cardSetsMap)
         mainId = findMainId(card)
         unofficialVersions = []
         if mainId in unofficialCardsMap:
@@ -166,8 +166,8 @@ def buildDatabase():
         dbCards.append({
             "id": mainId,
             "name": card["name"],
-            "date": releaseDate,
-            "unofficials_info": unofficialVersions,
+            "date": firstRelease["date"],
+            "unofficial_versions": unofficialVersions,
             "types": types,
             "alt_names": altNames,
         })

@@ -27,7 +27,7 @@ class CardDB:
             "id": id,
             "name": name,
             "date": "0000-01-01",
-            "unofficials_info": [],
+            "unofficial_versions": [],
             "types": [],
             "alt_names": [],
         }

@@ -41,8 +41,8 @@ def find():
                     _type = "Pre-Errata"
 
                 hits.append({
-                    "altId": altId,
-                    "mainId": mainId,
+                    "alt_id": altId,
+                    "main_id": mainId,
                     "type": _type,
                     "name": name,
                     "db": db
@@ -52,8 +52,8 @@ def find():
 
     # TODO remove this when the TCG erratas Night Assailant
     hits.append({
-        "altId": 16226796,
-        "mainId": 16226786,
+        "alt_id": 16226796,
+        "main_id": 16226786,
         "type": "Pre-Errata",
         "name": "Night Assailant (Pre-Errata)",
         "db": "Manual addition"
