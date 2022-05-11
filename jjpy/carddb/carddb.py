@@ -56,6 +56,10 @@ class CardDB:
         card, ok = self.getCardByName(name)
         return card["id"], ok
 
+    def filter(self, filterFunc):
+        hits = filter(filterFunc, self.cards)
+        return list(hits)
+
     def __init__(self):
         fileExists = os.path.isfile(DB_PATH)
         if not fileExists:
@@ -80,6 +84,7 @@ class CardDB:
                 key = altname.lower()
                 nameMap[key] = card
 
+        self.cards = cards
         self.idMap = idMap
         self.nameMap = nameMap
 
