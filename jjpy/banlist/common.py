@@ -21,6 +21,15 @@ sectionTitlesWithCardNames = [
 ]
 
 
+def emptyLfList():
+    return {
+        BANNED: [],
+        LIMITED: [],
+        SEMILIMITED: [],
+        "changes": [],
+    }
+
+
 def parseChangeFile(path):
     parser = configparser.ConfigParser(
         allow_no_value=True,
@@ -101,12 +110,7 @@ def applyChanges(baseList, changeFile):
     newList = None
 
     if baseList is None:
-        newList = {
-            BANNED: [],
-            LIMITED: [],
-            SEMILIMITED: [],
-            "changes": [],
-        }
+        newList = emptyLfList()
     else:
         newList = {}
         for status in lf:
