@@ -16,13 +16,12 @@ def parseYear(name):
     return year
 
 
-def parseName(name):
+def prettifyName(name):
     return name.replace("-", " ").upper()
 
 
-def createCardPool(cardDb, lfList):
-    year = parseYear(lfList["name"])
-    enddate = year + "-12-31"
+def createCardPool(cardDb, lfList, year):
+    enddate = str(year) + "-12-31"
 
     def filterFunc(c): return c["date"] <= enddate
     cards = cardDb.filter(filterFunc)
@@ -94,7 +93,7 @@ def createConfFileContent(prettyName, cardPool):
 def writeConfFile(name, content):
     path = DEPLOYMENT_DIR
 
-    if name not in ACTIVE_LISTS:
+    if name.startswith("jj-") and name not in ACTIVE_LISTS:
         path = path + "archive/"
 
     os.makedirs(path, exist_ok=True)
@@ -104,17 +103,21 @@ def writeConfFile(name, content):
         f.write(content)
 
 
-def createConfFile(cardDb, name, lfList):
-    prettyName = parseName(name)
-    cardPool = createCardPool(cardDb, lfList)
+def createConfFile(cardDb, lfList, fileName, prettyName, year):
+    cardPool = createCardPool(cardDb, lfList, year)
     fileContent = createConfFileContent(prettyName, cardPool)
-    writeConfFile(name, fileContent)
+    writeConfFile(fileName, fileContent)
 
 
 def cleanDeploymentDir():
     files = glob.glob(DEPLOYMENT_DIR + "/**/*.conf", recursive=True)
     for file in files:
         os.remove(file)
+
+
+def getJuniorRoyaleChanges():
+    files = glob.glob(common.CHANGE_DIR + "jr-*.ini")
+    return files
 
 
 def main():
@@ -124,14 +127,28 @@ def main():
 
     for lfList in lfLists:
         name = lfList["name"]
-        createConfFile(cardDb, name, lfList)
+        prettyName = prettifyName(name)
+        year = parseYear(name)
+        createConfFile(cardDb, lfList, name, prettyName, year)
 
         # Create P0 format for next year
         if name.endswith("-p2"):
-            year = parseYear(name)
             year = int(year) + 1
             name = f"jj-{year}-p0"
-            createConfFile(cardDb, name, lfList)
+            prettyName = prettifyName(name)
+            createConfFile(cardDb, lfList, name, prettyName, year)
+
+    jrFiles = getJuniorRoyaleChanges()
+    for jrFile in jrFiles:
+        jrFile = common.parseChangeFile(jrFile)
+        common.replaceCardNamesWithCardObjects(cardDb, [jrFile])
+        common.assertCorrectness([jrFile])
+        baseLfList = lfLists[-1]
+        jrLfList = common.applyChanges(baseLfList, jrFile)
+        year = parseYear(baseLfList["name"])
+        name = jrLfList["name"]
+        prettyName = prettifyName(name)
+        createConfFile(cardDb, jrLfList, name, prettyName, year)
 
 
 if __name__ == "__main__":

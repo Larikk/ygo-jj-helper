@@ -117,6 +117,8 @@ def applyChanges(baseList, changeFile):
             newList[status] = list(baseList[status])
         newList["changes"] = []
 
+    newList["name"] = changeFile["name"]
+
     for sectionTitle in sectionTitlesWithCardNames:
         for card in changeFile[sectionTitle]:
             _from = UNLIMITED
@@ -149,7 +151,6 @@ def buildBanlists(cardDb):
     lfLists = []
     for changeFile in changeFiles:
         lfList = applyChanges(prevList, changeFile)
-        lfList["name"] = changeFile["name"]
         lfLists.append(lfList)
         prevList = lfList
 
