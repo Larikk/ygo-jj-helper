@@ -1,6 +1,3 @@
 [submodule "EDO-CDB"]
 	path = EDO-CDB
 	url = https://github.com/ProjectIgnis/DeltaUtopia
-[submodule "edo-lflist-deployment"]
-	path = edo-lflist-deployment
-	url = git@github.com:Larikk/ygo-jj-edopro-lflists.git
