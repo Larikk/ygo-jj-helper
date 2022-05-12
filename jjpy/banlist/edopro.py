@@ -21,6 +21,14 @@ def prettifyName(name):
     return name.replace("-", " ").upper()
 
 
+def startOfYear(year):
+    return f"{year}-01-01"
+
+
+def endOfYear(year):
+    return f"{year}-31-12"
+
+
 def createCardPool(cardDb, lfList, startdate="2000-01-01", enddate="3000-12-31"):
 
     def filterFunc(c): return startdate <= c["date"] <= enddate
@@ -126,51 +134,70 @@ def getJuniorRoyaleChanges():
     return files[0]
 
 
+def createRegularLfList(cardDb, lfList):
+    name = lfList["name"]
+    prettyName = prettifyName(name)
+    year = parseYear(name)
+    enddate = endOfYear(year)
+    cardPool = createCardPool(cardDb, lfList, enddate=enddate)
+    createConfFile(cardPool, name, prettyName)
+
+
+def createP0LfList(cardDb, lfList):
+    year = parseYear(lfList["name"])
+    year = int(year) + 1
+    name = f"jj-{year}-p0"
+    enddate = endOfYear(year)
+    prettyName = prettifyName(name)
+    cardPool = createCardPool(cardDb, lfList, enddate=enddate)
+    createConfFile(cardPool, name, prettyName)
+
+
+def createPreviewLfList(cardDb, lastLfList):
+    lastYear = parseYear(lastLfList["name"])
+    nextYear = str(int(lastYear) + 1)
+    startdate = startOfYear(nextYear)
+    enddate = endOfYear(nextYear)
+    name = f"jj-{nextYear}-preview"
+    prettyName = f"JJ {nextYear} Preview"
+    lfList = common.emptyLfList()
+    cardPool = createCardPool(
+        cardDb, lfList, startdate=startdate, enddate=enddate)
+    createConfFile(cardPool, name, prettyName)
+
+
+def createJuniorRoyaleLfList(cardDb, lastLfList):
+    jrFile = getJuniorRoyaleChanges()
+    if jrFile is None:
+        return
+
+    jrFile = common.parseChangeFile(cardDb, jrFile)
+
+    year = parseYear(lastLfList["name"])
+    enddate = endOfYear(year)
+    name = jrFile["name"]
+    prettyName = prettifyName(name)
+
+    jrLfList = common.applyChanges(lastLfList, jrFile)
+    cardPool = createCardPool(cardDb, jrLfList, enddate=enddate)
+    createConfFile(cardPool, name, prettyName)
+
+
 def main():
     cleanDeploymentDir()
     cardDb = CardDB()
     lfLists = common.buildBanlists(cardDb)
 
     for lfList in lfLists:
-        name = lfList["name"]
-        prettyName = prettifyName(name)
-        year = parseYear(name)
-        enddate = year + "-12-31"
-        cardPool = createCardPool(cardDb, lfList, enddate=enddate)
-        createConfFile(cardPool, name, prettyName)
-
+        createRegularLfList(cardDb, lfList)
         # Create P0 format for next year
-        if name.endswith("-p2"):
-            year = int(year) + 1
-            name = f"jj-{year}-p0"
-            enddate = str(year) + "-12-31"
-            prettyName = prettifyName(name)
-            cardPool = createCardPool(cardDb, lfList, enddate=enddate)
-            createConfFile(cardPool, name, prettyName)
+        if lfList["name"].endswith("-p2"):
+            createP0LfList(cardDb, lfList)
 
-    lastList = lfLists[-1]
-    lastYear = parseYear(lastList["name"])
-    nextYear = str(int(lastYear) + 1)
-    startdate = nextYear + "-01-01"
-    enddate = nextYear + "-12-31"
-    name = f"jj-{nextYear}-preview"
-    prettyName = f"JJ {nextYear} Preview"
-    cardPool = createCardPool(
-        cardDb, common.emptyLfList(), startdate=startdate, enddate=enddate)
-    createConfFile(cardPool, name, prettyName)
+    lastLfList = lfLists[-1]
+    createPreviewLfList(cardDb, lastLfList)
 
-    jrFile = getJuniorRoyaleChanges()
-    if jrFile is not None:
-        jrFile = common.parseChangeFile(cardDb, jrFile)
-
-        year = parseYear(lastList["name"])
-        enddate = year + "-12-31"
-        name = jrFile["name"]
-        prettyName = prettifyName(name)
-
-        jrLfList = common.applyChanges(lastList, jrFile)
-        cardPool = createCardPool(cardDb, jrLfList, enddate=enddate)
-        createConfFile(cardPool, name, prettyName)
+    createJuniorRoyaleLfList(cardDb, lastLfList)
 
 
 if __name__ == "__main__":
