@@ -93,7 +93,7 @@ def createConfFileContent(prettyName, cardPool):
 def writeConfFile(name, content):
     path = DEPLOYMENT_DIR
 
-    if name.startswith("jj-") and name not in ACTIVE_LISTS:
+    if name.startswith("jj-") and not name.endswith("-preview") and name not in ACTIVE_LISTS:
         path = path + "archive/"
 
     os.makedirs(path, exist_ok=True)
@@ -148,17 +148,27 @@ def main():
             cardPool = createCardPool(cardDb, lfList, enddate=enddate)
             createConfFile(cardPool, name, prettyName)
 
+    lastList = lfLists[-1]
+    lastYear = parseYear(lastList["name"])
+    nextYear = str(int(lastYear) + 1)
+    startdate = nextYear + "-01-01"
+    enddate = nextYear + "-12-31"
+    name = f"jj-{nextYear}-preview"
+    prettyName = f"JJ {nextYear} Preview"
+    cardPool = createCardPool(
+        cardDb, common.emptyLfList(), startdate=startdate, enddate=enddate)
+    createConfFile(cardPool, name, prettyName)
+
     jrFile = getJuniorRoyaleChanges()
     if jrFile is not None:
         jrFile = common.parseChangeFile(cardDb, jrFile)
 
-        baseLfList = lfLists[-1]
-        year = parseYear(baseLfList["name"])
+        year = parseYear(lastList["name"])
         enddate = year + "-12-31"
         name = jrFile["name"]
         prettyName = prettifyName(name)
 
-        jrLfList = common.applyChanges(baseLfList, jrFile)
+        jrLfList = common.applyChanges(lastList, jrFile)
         cardPool = createCardPool(cardDb, jrLfList, enddate=enddate)
         createConfFile(cardPool, name, prettyName)
 
