@@ -21,10 +21,9 @@ def prettifyName(name):
     return name.replace("-", " ").upper()
 
 
-def createCardPool(cardDb, lfList, year):
-    enddate = str(year) + "-12-31"
+def createCardPool(cardDb, lfList, startdate="2000-01-01", enddate="3000-12-31"):
 
-    def filterFunc(c): return c["date"] <= enddate
+    def filterFunc(c): return startdate <= c["date"] <= enddate
     cards = cardDb.filter(filterFunc)
 
     unlimitedIds = set()
@@ -104,8 +103,7 @@ def writeConfFile(name, content):
         f.write(content)
 
 
-def createConfFile(cardDb, lfList, fileName, prettyName, year):
-    cardPool = createCardPool(cardDb, lfList, year)
+def createConfFile(cardPool, fileName, prettyName):
     fileContent = createConfFileContent(prettyName, cardPool)
     writeConfFile(fileName, fileContent)
 
@@ -137,14 +135,18 @@ def main():
         name = lfList["name"]
         prettyName = prettifyName(name)
         year = parseYear(name)
-        createConfFile(cardDb, lfList, name, prettyName, year)
+        enddate = year + "-12-31"
+        cardPool = createCardPool(cardDb, lfList, enddate=enddate)
+        createConfFile(cardPool, name, prettyName)
 
         # Create P0 format for next year
         if name.endswith("-p2"):
             year = int(year) + 1
             name = f"jj-{year}-p0"
+            enddate = str(year) + "-12-31"
             prettyName = prettifyName(name)
-            createConfFile(cardDb, lfList, name, prettyName, year)
+            cardPool = createCardPool(cardDb, lfList, enddate=enddate)
+            createConfFile(cardPool, name, prettyName)
 
     jrFile = getJuniorRoyaleChanges()
     if jrFile is not None:
@@ -152,11 +154,13 @@ def main():
 
         baseLfList = lfLists[-1]
         year = parseYear(baseLfList["name"])
+        enddate = year + "-12-31"
         name = jrFile["name"]
         prettyName = prettifyName(name)
 
         jrLfList = common.applyChanges(baseLfList, jrFile)
-        createConfFile(cardDb, jrLfList, name, prettyName, year)
+        cardPool = createCardPool(cardDb, jrLfList, enddate=enddate)
+        createConfFile(cardPool, name, prettyName)
 
 
 if __name__ == "__main__":
