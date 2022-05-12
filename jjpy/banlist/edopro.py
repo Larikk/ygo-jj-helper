@@ -4,7 +4,7 @@ import sys
 from jjpy.carddb.carddb import CardDB
 from . import common
 
-DEPLOYMENT_DIR = "edo-lflist-deployment/"
+DEPLOYMENT_DIR = "../ygo-jj-edopro-lflists/"
 
 ACTIVE_LISTS = {
     "jj-2008-p1",
