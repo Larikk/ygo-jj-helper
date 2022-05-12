@@ -30,7 +30,7 @@ def emptyLfList():
     }
 
 
-def parseChangeFile(path):
+def parseChangeFile(cardDb, path):
     parser = configparser.ConfigParser(
         allow_no_value=True,
         comment_prefixes=None,
@@ -39,11 +39,28 @@ def parseChangeFile(path):
     parser.read(path)
 
     parsedFile = dict()
+    encounteredCards = []
+    errorEncountered = False
+
     for section in parser.sections():
         cardsInSection = []
         for cardname in parser[section]:
-            cardsInSection.append(cardname)
+            card, ok = cardDb.getCardByName(cardname)
+            if not ok:
+                print("Invalid name encountered", path, cardname)
+                errorEncountered = True
+
+            if card in encounteredCards:
+                print("Card was listed twice in change file", path, cardname)
+                errorEncountered = True
+            encounteredCards.append(card)
+
+            cardsInSection.append(card)
         parsedFile[section] = cardsInSection
+
+    if errorEncountered:
+        print("Fatal error. Invalid file", path)
+        sys.exit()
 
     name = path.split("/")[-1].split(".")[0]
     parsedFile["name"] = name
@@ -51,57 +68,18 @@ def parseChangeFile(path):
     return parsedFile
 
 
-def parseAllChangeFiles():
+def parseAllChangeFiles(cardDb):
     files = os.listdir(CHANGE_DIR)
     files = filter(lambda f: f.startswith("jj-"), files)
     files = sorted(files)
 
     parsedFiles = []
     for file in files:
-        parsedFile = parseChangeFile(CHANGE_DIR + file)
+        path = CHANGE_DIR + file
+        parsedFile = parseChangeFile(cardDb, path)
         parsedFiles.append(parsedFile)
 
     return parsedFiles
-
-
-def replaceCardNamesWithCardObjects(cardDb, parsedFiles):
-    errorEncountered = False
-
-    for parsedFile in parsedFiles:
-        for sectionTitle in sectionTitlesWithCardNames:
-            section = parsedFile[sectionTitle]
-            for i in range(len(section)):
-                cardName = section[i]
-                card, ok = cardDb.getCardByName(cardName)
-                if not ok:
-                    errorEncountered = True
-                section[i] = card
-
-    if errorEncountered:
-        print("Could not parse some card names. Exiting.")
-        sys.exit()
-
-
-def assertNoDuplicateCardsExist(parsedFile):
-    encountered = []
-    ok = True
-
-    for sectionTitle in sectionTitlesWithCardNames:
-        section = parsedFile[sectionTitle]
-        for card in section:
-            if card in encountered:
-                print("Duplicate card found in one change file:", card["name"])
-                ok = False
-            else:
-                encountered.append(card)
-
-    if not ok:
-        sys.exit()
-
-
-def assertCorrectness(changeFiles):
-    for changeFile in changeFiles:
-        assertNoDuplicateCardsExist(changeFile)
 
 
 def applyChanges(baseList, changeFile):
@@ -143,9 +121,7 @@ def applyChanges(baseList, changeFile):
 
 
 def buildBanlists(cardDb):
-    changeFiles = parseAllChangeFiles()
-    replaceCardNamesWithCardObjects(cardDb, changeFiles)
-    assertCorrectness(changeFiles)
+    changeFiles = parseAllChangeFiles(cardDb)
 
     prevList = None
     lfLists = []

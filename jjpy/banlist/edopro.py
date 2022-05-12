@@ -1,5 +1,6 @@
 import glob
 import os
+import sys
 from jjpy.carddb.carddb import CardDB
 from . import common
 
@@ -117,7 +118,14 @@ def cleanDeploymentDir():
 
 def getJuniorRoyaleChanges():
     files = glob.glob(common.CHANGE_DIR + "jr-*.ini")
-    return files
+    if len(files) > 1:
+        print("Multiple Junior Royale files found")
+        sys.exit()
+
+    if len(files) == 0:
+        return None
+
+    return files[0]
 
 
 def main():
@@ -138,16 +146,16 @@ def main():
             prettyName = prettifyName(name)
             createConfFile(cardDb, lfList, name, prettyName, year)
 
-    jrFiles = getJuniorRoyaleChanges()
-    for jrFile in jrFiles:
-        jrFile = common.parseChangeFile(jrFile)
-        common.replaceCardNamesWithCardObjects(cardDb, [jrFile])
-        common.assertCorrectness([jrFile])
+    jrFile = getJuniorRoyaleChanges()
+    if jrFile is not None:
+        jrFile = common.parseChangeFile(cardDb, jrFile)
+
         baseLfList = lfLists[-1]
-        jrLfList = common.applyChanges(baseLfList, jrFile)
         year = parseYear(baseLfList["name"])
-        name = jrLfList["name"]
+        name = jrFile["name"]
         prettyName = prettifyName(name)
+
+        jrLfList = common.applyChanges(baseLfList, jrFile)
         createConfFile(cardDb, jrLfList, name, prettyName, year)
 
 
