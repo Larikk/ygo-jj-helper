@@ -13,23 +13,36 @@ def getCards():
     return cards
 
 
-def getCardsetsMap():
+def getCardsets():
     url = "https://db.ygoprodeck.com/api/v7/cardsets.php"
-    cardsets = apiRequest(url)
+    cardsetsRaw = apiRequest(url)
 
-    # Key: lowercased name
-    # Value: object with original name and date
-    cardsetMap = dict()
-
-    for cardset in cardsets:
+    cardsets = []
+    for cardset in cardsetsRaw:
         name = cardset["set_name"]
-        key = name.lower()
 
         if "tcg_date" not in cardset:
             print("Skipping release because it has no date", name)
             continue
 
-        cardsetMap[key] = cardset["tcg_date"]
+        date = cardset["tcg_date"]
+        cardsets.append({
+            "name": name,
+            "date": date,
+        })
+
+    def f(c): return c["date"], c["name"]
+    cardsets.sort(key=f)
+
+    return cardsets
+
+
+def buildCardsetsMap(cardsets):
+    cardsetMap = dict()
+
+    for cardset in cardsets:
+        key = cardset["name"].lower()
+        cardsetMap[key] = cardset["date"]
 
     return cardsetMap
 
@@ -138,7 +151,8 @@ def getAlternativeNames(card):
 
 def buildDatabase():
     cards = getCards()
-    cardSetsMap = getCardsetsMap()
+    cardsets = getCardsets()
+    cardSetsMap = buildCardsetsMap(cardsets)
     unofficialCardsMap = getUnofficialCardsMap()
 
     dbCards = []
@@ -172,6 +186,9 @@ def buildDatabase():
     os.makedirs("data/carddb/", exist_ok=True)
     with open("data/carddb/db.json", "w") as f:
         json.dump(db, f, indent=4, ensure_ascii=False)
+
+    with open("data/carddb/cardsets.json", "w") as f:
+        json.dump(cardsets, f, indent=4, ensure_ascii=False)
 
 
 if __name__ == "__main__":
