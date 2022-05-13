@@ -1,0 +1,26 @@
+<h1>Card Release Timeline</h1>
+<p>
+    This page has all card releases sorted chronologically.
+    It is not recommended to use this to determine all legal cards;
+    Use <a href="./cardoverview.html">Legal Cards</a> instead.
+</p>
+<p>Data is taken from the <a href="https://db.ygoprodeck.com/api-guide/">YGPPRODECK API</a>.</p>
+<div>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for cardset in cardsets %}
+            <tr>
+                <td>{{ cardset.date }}</td>
+                <td>{{ cardset.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
