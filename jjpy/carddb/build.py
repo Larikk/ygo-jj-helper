@@ -1,20 +1,9 @@
 import json
 import math
 import time
-import requests
 import os
 from . import unofficialcards
-
-
-def apiRequest(url):
-    response = requests.get(url)
-
-    if not response.ok:
-        print("Request failed:" + url)
-
-    content = response.json()
-
-    return content
+from jjpy.util.api import apiRequest
 
 
 def getCards():
