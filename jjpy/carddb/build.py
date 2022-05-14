@@ -137,6 +137,10 @@ def getCardTypes(card):
     if "Pendulum" in _type:
         result.append("Pendulum")
 
+    if "Spirit" in _type:
+        if "Effect" not in result:
+            result.append("Effect")
+
     return result
 
 
