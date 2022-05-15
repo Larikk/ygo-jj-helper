@@ -16,7 +16,7 @@ pages = [
         "path": "cardoverview.html",
     },
     {
-        "title": "Contact",
-        "path": "contact.html",
+        "title": "Discord",
+        "path": "discord.html",
     },
 ]
