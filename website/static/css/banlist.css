@@ -1,0 +1,75 @@
+.banlist-table {
+    border: 2px solid Black;
+    white-space: nowrap;
+}
+
+.banlist-table-header {
+    border-bottom: 2px;
+    border-style: solid;
+}
+
+.name-column {
+    width: 100%;
+    white-space: normal;
+}
+
+.status-column {
+    text-align: center;
+    vertical-align: middle;
+}
+
+:root {
+    --normal-card-bg: #f1c40f;
+    --effect-card-bg: #d35400;
+    --ritual-card-bg: #3498db;
+    --fusion-card-bg: #8e44ad;
+    --synchro-card-bg: #ecf0f1;
+    --xyz-card-bg: Black;
+    --link-card-bg: #2980b9;
+    --spell-card-bg: #2ecc71;
+    --trap-card-bg: #9b59b6;
+}
+
+.normal-bg {
+    background: var(--normal-card-bg) !important
+}
+
+.effect-bg {
+    background: var(--effect-card-bg) !important;
+}
+
+.ritual-bg {
+    background: var(--ritual-card-bg) !important;
+}
+
+.fusion-bg {
+    background: var(--fusion-card-bg) !important;
+}
+
+.synchro-bg {
+    background: var(--synchro-card-bg) !important;
+}
+
+.xyz-bg {
+    background: var(--xyz-card-bg) !important;
+}
+
+.pendulum-normal-bg {
+    background: linear-gradient(180deg, var(--normal-card-bg) 30%, var(--spell-card-bg) 70%) !important;
+}
+
+.pendulum-effect-bg {
+    background: linear-gradient(180deg, var(--effect-card-bg) 30%, var(--spell-card-bg) 70%) !important;
+}
+
+.link-bg {
+    background: var(--link-card-bg) !important;
+}
+
+.spell-bg {
+    background: var(--spell-card-bg) !important;
+}
+
+.trap-bg {
+    background: var(--trap-card-bg) !important;
+}
