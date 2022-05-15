@@ -3,7 +3,6 @@ import json
 import os
 import shutil
 from jinja2 import Environment, FileSystemLoader
-from bs4 import BeautifulSoup as bs
 from . import simplepages as simplePages
 import jjpy.banlist.web as web
 
@@ -40,7 +39,6 @@ def copyStaticFiles():
 
 
 def writeHtmlFile(path, content):
-    content = bs(content, "html.parser").prettify()
     with open(path, "w") as f:
         f.write(content)
 
