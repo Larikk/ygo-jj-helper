@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/ygo-jj-helper/css/banlist.css">
+<script src="/ygo-jj-helper/js/banlist.js"></script>
+
+<h1>{{ title }}</h1>
+
+<div class="selection-area">
+    <span>Show banlist after Episode: </span>
+    <select id="banlist-selection" class="form-select w-25" aria-label="Banlist selection" onchange="onBanlistSelect()">
+        <option value="none" selected="selected" disabled="true" hidden="true">Choose here</option>
+        {% for entry in dropDownEntries %}
+        <option value="{{ entry.id }}">
+            <a href="/ygo-jj-helper/banlists/{{ entry.id }}.html">
+                {{ entry.name }}
+            </a>
+        </option>
+        {% endfor %}
+    </select>
+</div>
+<div id="banlist-container">
+    {% for category in banlist.categories %}
+    {% if category.cards is defined and category.cards|length > 0 %}
+    <h3>{{ category.name }}</h3>
+    <table class="table table-borderless table-hover table-sm banlist-table">
+        <thead>
+            <tr>
+                <th class="text-center">Card Type</th>
+                <th>Card Name</th>
+                <th class="text-center">Current Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in category.cards %}
+            <tr>
+                <td class="{{ card.type }}-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" {{ card.name }}>
+                        {{ card.name }}
+                    </a>
+                </td>
+                <td class="status-column">{{ category.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    {% endfor %}
+
+    <h3>Changes</h3>
+    <ul>
+        {% for change in banlist.changes %}
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" {{ change.cardName }}>
+                {{ change.cardName }}
+            </a>
+            : {{ change.from }} ➔ {{ change.to }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>

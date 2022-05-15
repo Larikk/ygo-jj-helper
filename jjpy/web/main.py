@@ -5,6 +5,7 @@ import shutil
 from jinja2 import Environment, FileSystemLoader
 from bs4 import BeautifulSoup as bs
 from . import simplepages as simplePages
+import jjpy.banlist.web as web
 
 WEBSITE_SRC_DIR = "website/"
 STATIC_FILES_DIR = WEBSITE_SRC_DIR + "static/"
@@ -13,11 +14,16 @@ PAGE_DIR = TEMPLATE_DIR + "pages/"
 OUTPUT_DIR = "out/"
 
 
-env = Environment(
+jinjaNoEscaping = Environment(
     loader=FileSystemLoader(searchpath="."),
 )
 
-skeletonTemplate = env.get_template(TEMPLATE_DIR + "skeleton.html")
+jinjaWithEscaping = Environment(
+    loader=FileSystemLoader(searchpath="."),
+    autoescape=True
+)
+
+skeletonTemplate = jinjaNoEscaping.get_template(TEMPLATE_DIR + "skeleton.html")
 
 
 def copyStaticFiles():
@@ -51,13 +57,44 @@ def renderSimplePage(page):
     writeHtmlFile(outputPath, s)
 
 
+def renderBanlistPage(title, banlist, dropDownOptions, outputPath):
+    templatePath = PAGE_DIR + "banlist.html"
+    banlistTemplate = jinjaWithEscaping.get_template(templatePath)
+
+    content = banlistTemplate.render(
+        title=title,
+        dropDownEntries=dropDownOptions,
+        banlist=banlist,
+    )
+
+    s = skeletonTemplate.render(title=title, content=content)
+    writeHtmlFile(outputPath, s)
+
+
+def renderBanlistPages():
+    banlistDir = OUTPUT_DIR + "banlists/"
+    os.makedirs(banlistDir, exist_ok=True)
+    banlists = web.buildBanlists()
+    options = list(map(lambda b: {"id": b["id"], "name": b["name"]}, banlists))
+
+    for banlist in banlists:
+        title = "Banlist after Episode " + banlist["name"]
+        outputPath = banlistDir + banlist["id"] + ".html"
+        renderBanlistPage(title, banlist, options, outputPath)
+
+    title = "Current Banlist"
+    currentBanlist = banlists[-1]
+    outputPath = OUTPUT_DIR + "banlist.html"
+    renderBanlistPage(title, currentBanlist, options, outputPath)
+
+
 def renderCardsetPage():
     cardsets = []
     with open("data/carddb/cardsets.json", "r") as f:
         cardsets = json.load(f)
 
     templatePath = PAGE_DIR + "cardsets.html"
-    cardsetsContentTemplate = env.get_template(templatePath)
+    cardsetsContentTemplate = jinjaWithEscaping.get_template(templatePath)
     content = cardsetsContentTemplate.render(cardsets=cardsets)
 
     title = "Release"
@@ -67,13 +104,14 @@ def renderCardsetPage():
 
 
 def main():
-    # copyStaticFiles()
-    renderCardsetPage()
-    return
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     for page in simplePages.pages:
         renderSimplePage(page)
+
+    copyStaticFiles()
+    renderCardsetPage()
+    renderBanlistPages()
 
 
 if __name__ == "__main__":
