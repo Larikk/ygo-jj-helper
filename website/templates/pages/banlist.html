@@ -49,10 +49,8 @@
     <ul>
         {% for change in banlist.changes %}
         <li>
-            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" {{ change.cardName }}>
-                {{ change.cardName }}
-            </a>
-            : {{ change.from }} ➔ {{ change.to }}
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search={{ change.cardName }}">
+                {{ change.cardName }}</a>: {{ change.from }} ➔ {{ change.to }}
         </li>
         {% endfor %}
     </ul>
