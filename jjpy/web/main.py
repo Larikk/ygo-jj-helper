@@ -10,7 +10,7 @@ WEBSITE_SRC_DIR = "website/"
 STATIC_FILES_DIR = WEBSITE_SRC_DIR + "static/"
 TEMPLATE_DIR = WEBSITE_SRC_DIR + "templates/"
 PAGE_DIR = TEMPLATE_DIR + "pages/"
-OUTPUT_DIR = "out/"
+OUTPUT_DIR = "docs/"
 
 
 jinjaNoEscaping = Environment(

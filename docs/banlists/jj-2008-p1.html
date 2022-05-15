@@ -1,0 +1,1032 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Banlist after Episode 2008 Part 1</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/ygo-jj-helper/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ygo-jj-helper/favicon-16x16.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/ygo-jj-helper/css/index.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/ygo-jj-helper/">
+                <img src="/ygo-jj-helper/logo.png" class="navbar-logo" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/ygo-jj-helper/">Home</a>
+                    <a class="nav-link" href="/ygo-jj-helper/ruleset.html">Ruleset</a>
+                    <a class="nav-link" href="/ygo-jj-helper/banlist.html">Banlists</a>
+                    <a class="nav-link" href="/ygo-jj-helper/cardoverview.html">Cards</a>
+                    <a class="nav-link" href="/ygo-jj-helper/cardsets.html">Releases</a>
+                    <a class="nav-link" href="/ygo-jj-helper/contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="root-container">
+        <link rel="stylesheet" href="/ygo-jj-helper/css/banlist.css">
+<script src="/ygo-jj-helper/js/banlist.js"></script>
+
+<h1>Banlist after Episode 2008 Part 1</h1>
+
+<div class="selection-area">
+    <span>Show banlist after Episode: </span>
+    <select id="banlist-selection" class="form-select w-25" aria-label="Banlist selection" onchange="onBanlistSelect()">
+        <option value="none" selected="selected" disabled="true" hidden="true">Choose here</option>
+        
+        <option value="jj-2002-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2002-p1.html">
+                2002 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2002-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2002-p2.html">
+                2002 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2003-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2003-p1.html">
+                2003 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2003-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2003-p2.html">
+                2003 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2004-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2004-p1.html">
+                2004 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2004-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2004-p2.html">
+                2004 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2005-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2005-p1.html">
+                2005 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2005-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2005-p2.html">
+                2005 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2006-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2006-p1.html">
+                2006 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2006-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2006-p2.html">
+                2006 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2007-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2007-p1.html">
+                2007 Part 1
+            </a>
+        </option>
+        
+        <option value="jj-2007-p2">
+            <a href="/ygo-jj-helper/banlists/jj-2007-p2.html">
+                2007 Part 2
+            </a>
+        </option>
+        
+        <option value="jj-2008-p1">
+            <a href="/ygo-jj-helper/banlists/jj-2008-p1.html">
+                2008 Part 1
+            </a>
+        </option>
+        
+    </select>
+</div>
+<div id="banlist-container">
+    
+    
+    <h3>Banned</h3>
+    <table class="table table-borderless table-hover table-sm banlist-table">
+        <thead>
+            <tr>
+                <th class="text-center">Card Type</th>
+                <th>Card Name</th>
+                <th class="text-center">Current Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Ancient Gear Golem>
+                        Ancient Gear Golem
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Barrel Dragon>
+                        Barrel Dragon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Black Luster Soldier - Envoy of the Beginning>
+                        Black Luster Soldier - Envoy of the Beginning
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Blowback Dragon>
+                        Blowback Dragon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Chaos Emperor Dragon - Envoy of the End>
+                        Chaos Emperor Dragon - Envoy of the End
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Cloudian - Eye of the Typhoon>
+                        Cloudian - Eye of the Typhoon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Cyber Jar>
+                        Cyber Jar
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Cyber-Stein>
+                        Cyber-Stein
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dark Armed Dragon>
+                        Dark Armed Dragon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dark Dust Spirit>
+                        Dark Dust Spirit
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dark Magician of Chaos>
+                        Dark Magician of Chaos
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Darklord Zerato>
+                        Darklord Zerato
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Fiber Jar>
+                        Fiber Jar
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Flame Ogre>
+                        Flame Ogre
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Guardian Sphinx>
+                        Guardian Sphinx
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Hino-Kagu-Tsuchi>
+                        Hino-Kagu-Tsuchi
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Honest>
+                        Honest
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Kazejin>
+                        Kazejin
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Kuraz the Light Monarch>
+                        Kuraz the Light Monarch
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Light and Darkness Dragon>
+                        Light and Darkness Dragon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Magical Scientist>
+                        Magical Scientist
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Morphing Jar #2>
+                        Morphing Jar #2
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Sanga of the Thunder>
+                        Sanga of the Thunder
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Splendid Venus>
+                        Splendid Venus
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Suijin>
+                        Suijin
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Super Conductor Tyranno>
+                        Super Conductor Tyranno
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" The Creator>
+                        The Creator
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Ultimate Obedient Fiend>
+                        Ultimate Obedient Fiend
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Ultimate Tyranno>
+                        Ultimate Tyranno
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Vanity&#39;s Ruler>
+                        Vanity&#39;s Ruler
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Witch of the Black Forest>
+                        Witch of the Black Forest
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Yamata Dragon>
+                        Yamata Dragon
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Yata-Garasu>
+                        Yata-Garasu
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Brain Control>
+                        Brain Control
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Card of Safe Return>
+                        Card of Safe Return
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Change of Heart>
+                        Change of Heart
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Cold Wave>
+                        Cold Wave
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Delinquent Duo>
+                        Delinquent Duo
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dimension Fusion>
+                        Dimension Fusion
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Graceful Charity>
+                        Graceful Charity
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Harpie&#39;s Feather Duster>
+                        Harpie&#39;s Feather Duster
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Limiter Removal>
+                        Limiter Removal
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Metamorphosis>
+                        Metamorphosis
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Painful Choice>
+                        Painful Choice
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Pot of Greed>
+                        Pot of Greed
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Raigeki>
+                        Raigeki
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Smashing Ground>
+                        Smashing Ground
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Snatch Steal>
+                        Snatch Steal
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Swords of Revealing Light>
+                        Swords of Revealing Light
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" The Forceful Sentry>
+                        The Forceful Sentry
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Anti-Spell Fragrance>
+                        Anti-Spell Fragrance
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Crush Card Virus>
+                        Crush Card Virus
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Deck Devastation Virus>
+                        Deck Devastation Virus
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Eradicator Epidemic Virus>
+                        Eradicator Epidemic Virus
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Imperial Order>
+                        Imperial Order
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Magic Cylinder>
+                        Magic Cylinder
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Ring of Destruction>
+                        Ring of Destruction
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Skill Drain>
+                        Skill Drain
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Solemn Judgment>
+                        Solemn Judgment
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Ultimate Offering>
+                        Ultimate Offering
+                    </a>
+                </td>
+                <td class="status-column">Banned</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    
+    
+    <h3>Limited</h3>
+    <table class="table table-borderless table-hover table-sm banlist-table">
+        <thead>
+            <tr>
+                <th class="text-center">Card Type</th>
+                <th>Card Name</th>
+                <th class="text-center">Current Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Arcana Force XXI - The World>
+                        Arcana Force XXI - The World
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" B.E.S. Tetran>
+                        B.E.S. Tetran
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Gorz the Emissary of Darkness>
+                        Gorz the Emissary of Darkness
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Jinzo>
+                        Jinzo
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Sinister Serpent>
+                        Sinister Serpent
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Spear Cretin>
+                        Spear Cretin
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Storm Shooter>
+                        Storm Shooter
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="effect-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Tyler the Great Warrior>
+                        Tyler the Great Warrior
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dark Hole>
+                        Dark Hole
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Future Fusion>
+                        Future Fusion
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Giant Trunade>
+                        Giant Trunade
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Heavy Storm>
+                        Heavy Storm
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Level Limit - Area B>
+                        Level Limit - Area B
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Messenger of Peace>
+                        Messenger of Peace
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Monster Reborn>
+                        Monster Reborn
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="spell-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Premature Burial>
+                        Premature Burial
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Call of the Haunted>
+                        Call of the Haunted
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dimension Wall>
+                        Dimension Wall
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Dust Tornado>
+                        Dust Tornado
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+            <tr>
+                <td class="trap-bg"></td>
+                <td class="name-column">
+                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=" Gravity Bind>
+                        Gravity Bind
+                    </a>
+                </td>
+                <td class="status-column">Limited</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    
+    
+    
+
+    <h3>Changes</h3>
+    <ul>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Brain Control">
+                Brain Control</a>: Limited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Dark Armed Dragon">
+                Dark Armed Dragon</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Darklord Zerato">
+                Darklord Zerato</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Dimension Fusion">
+                Dimension Fusion</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Honest">
+                Honest</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Kuraz the Light Monarch">
+                Kuraz the Light Monarch</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Splendid Venus">
+                Splendid Venus</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Vanity&#39;s Ruler">
+                Vanity&#39;s Ruler</a>: Unlimited ➔ Banned
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Arcana Force XXI - The World">
+                Arcana Force XXI - The World</a>: Unlimited ➔ Limited
+        </li>
+        
+        <li>
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search=Gorz the Emissary of Darkness">
+                Gorz the Emissary of Darkness</a>: Unlimited ➔ Limited
+        </li>
+        
+    </ul>
+</div>
+    </div>
+</body>
+
+</html>
