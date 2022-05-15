@@ -170,6 +170,10 @@ def buildDatabase():
 
         firstRelease = getFirstRelease(card, cardSetsMap)
         mainId = findMainId(card)
+
+        if len(str(mainId)) > 8:
+            continue
+
         unofficialVersions = []
         if mainId in unofficialCardsMap:
             unofficialVersions = unofficialCardsMap[mainId]
