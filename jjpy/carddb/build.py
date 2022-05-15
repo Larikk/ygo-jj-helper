@@ -165,6 +165,9 @@ def buildDatabase():
         if "card_sets" not in card:
             continue
 
+        if "skill" in card["type"].lower():
+            continue
+
         firstRelease = getFirstRelease(card, cardSetsMap)
         mainId = findMainId(card)
         unofficialVersions = []
