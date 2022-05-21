@@ -50,15 +50,6 @@ def find():
 
                 encounteredIds.add(altId)
 
-    # TODO remove this when the TCG erratas Night Assailant
-    hits.append({
-        "alt_id": 16226796,
-        "main_id": 16226786,
-        "type": "Pre-Errata",
-        "name": "Night Assailant (Pre-Errata)",
-        "db": "Manual addition"
-    })
-
     def f(hit): return hit["name"]
     hits.sort(key=f)
     return hits
