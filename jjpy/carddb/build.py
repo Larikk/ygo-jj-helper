@@ -75,8 +75,8 @@ def getFirstRelease(card, cardsetsMap):
         name = cardset["set_name"]
         key = name.lower()
 
-        if "duel terminal" in key:
-            continue
+        # if "duel terminal" in key:
+        #    continue
 
         if key not in cardsetsMap:
             print("Unknown release", name)
