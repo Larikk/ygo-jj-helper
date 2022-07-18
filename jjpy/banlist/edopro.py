@@ -79,13 +79,14 @@ def formatCard(n, id, name):
     return f"{id} {n}".ljust(20) + f"-- {name}\n"
 
 
-def createConfFileContent(prettyName, cardPool):
+def createConfFileContent(prettyName, cardPool, junior=True):
     order = [
         common.BANNED, common.LIMITED, common.SEMILIMITED, common.UNLIMITED
     ]
 
     s = f"#[{prettyName}]\n!{prettyName}\n$whitelist\n"
-    s += formatCard(1, 1, "Junior Journey Format")
+    if junior:
+        s += formatCard(1, 1, "Junior Journey Format")
 
     for i in range(len(order)):
         sectionTitle = order[i]
