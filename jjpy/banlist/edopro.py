@@ -167,6 +167,18 @@ def createPreviewLfList(cardDb, lastLfList):
     createConfFile(cardPool, name, prettyName)
 
 
+def createNextThreeLfLists(cardDb, lastLfList):
+    year = parseYear(lastLfList["name"])
+
+    for i in range(3):
+        year = int(year) + 1
+        name = f"jj-{year}-temp"
+        enddate = endOfYear(year)
+        prettyName = prettifyName(name)
+        cardPool = createCardPool(cardDb, lastLfList, enddate=enddate)
+        createConfFile(cardPool, name, prettyName)
+
+
 def createJuniorRoyaleLfList(cardDb, lastLfList):
     jrFile = getJuniorRoyaleChanges()
     if jrFile is None:
@@ -196,6 +208,7 @@ def main():
             createP0LfList(cardDb, lfList)
 
     lastLfList = lfLists[-1]
+    createNextThreeLfLists(cardDb, lastLfList)
     createPreviewLfList(cardDb, lastLfList)
 
     createJuniorRoyaleLfList(cardDb, lastLfList)
