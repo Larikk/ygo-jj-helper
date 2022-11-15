@@ -141,6 +141,9 @@ def getCardTypes(card):
         if "Effect" not in result:
             result.append("Effect")
 
+    if _type == "Tuner Monster":
+        result.append("Effect")
+
     return result
 
 
