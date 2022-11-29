@@ -55,11 +55,11 @@
 }
 
 .pendulum-normal-bg {
-    background: linear-gradient(180deg, var(--normal-card-bg) 30%, var(--spell-card-bg) 70%) !important;
+    background: linear-gradient(90deg, var(--normal-card-bg) 50%, var(--spell-card-bg) 50%) !important;
 }
 
 .pendulum-effect-bg {
-    background: linear-gradient(180deg, var(--effect-card-bg) 30%, var(--spell-card-bg) 70%) !important;
+    background: linear-gradient(90deg, var(--effect-card-bg) 50%, var(--spell-card-bg) 50%) !important;
 }
 
 .link-bg {
