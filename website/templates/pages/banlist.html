@@ -33,7 +33,8 @@
             <tr>
                 <td class="{{ card.type }}-bg"></td>
                 <td class="name-column">
-                    <a class="link-dark" href="https://db.ygoprodeck.com/card/?search={{ card.name }}">
+                    <a class="link-dark"
+                        href="https://db.ygoprodeck.com/card/?search={{ card.id }}&utm_source=jjhelper">
                         {{ card.name }}
                     </a>
                 </td>
@@ -49,7 +50,7 @@
     <ul>
         {% for change in banlist.changes %}
         <li>
-            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search={{ change.cardName }}">
+            <a class="link-dark" href="https://db.ygoprodeck.com/card/?search={{ change.cardId }}&utm_source=jjhelper">
                 {{ change.cardName }}</a>: {{ change.from }} ➔ {{ change.to }}
         </li>
         {% endfor %}

@@ -51,6 +51,7 @@ def mapCard(card):
 
     return {
         "name": card["name"],
+        "id": card["id"],
         "type": _type,
     }
 
@@ -65,6 +66,7 @@ def mapCards(cards):
 def mapChange(change):
     return {
         "cardName": change["card"]["name"],
+        "cardId": change["card"]["id"],
         "from": change["from"].title(),
         "to": change["to"].title(),
     }
