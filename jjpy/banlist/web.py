@@ -3,13 +3,13 @@ from . import common
 
 types = [
     "normal",
+    "pendulum-normal",
     "effect",
+    "pendulum-effect",
     "ritual",
     "fusion",
     "synchro",
     "xyz",
-    "pendulum-normal",
-    "pendulum-effect",
     "link",
     "spell",
     "trap",
