@@ -9,6 +9,7 @@ types = [
     "ritual",
     "fusion",
     "synchro",
+    "pendulum-synchro",
     "xyz",
     "link",
     "spell",
@@ -39,7 +40,7 @@ def createName(id):
 
 
 def mapCard(card):
-    types = card["types"]
+    types = card["types"].copy()
     _type = ""
 
     if "Pendulum" in types:
@@ -115,3 +116,7 @@ def buildBanlists():
         banlists = banlists[1:]
 
     return list(map(mapBanlist, banlists))
+
+
+if __name__ == "__main__":
+    buildBanlists()

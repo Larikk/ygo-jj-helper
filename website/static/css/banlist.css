@@ -62,6 +62,10 @@
     background: linear-gradient(90deg, var(--effect-card-bg) 50%, var(--spell-card-bg) 50%) !important;
 }
 
+.pendulum-synchro-bg {
+    background: linear-gradient(90deg, var(--synchro-card-bg) 50%, var(--spell-card-bg) 50%) !important;
+}
+
 .link-bg {
     background: var(--link-card-bg) !important;
 }
