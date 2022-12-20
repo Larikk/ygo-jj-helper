@@ -8,6 +8,7 @@ DEPLOYMENT_DIR = "../ygo-jj-edopro-lflists/"
 
 ACTIVE_LISTS = {
     "jj-2016-p1",
+    "jj-2017-preliminary",
 }
 
 
@@ -172,7 +173,7 @@ def createNextThreeLfLists(cardDb, lastLfList):
 
     for i in range(3):
         year = int(year) + 1
-        name = f"jj-{year}-temp"
+        name = f"jj-{year}-preliminary"
         enddate = endOfYear(year)
         prettyName = prettifyName(name)
         cardPool = createCardPool(cardDb, lastLfList, enddate=enddate)
