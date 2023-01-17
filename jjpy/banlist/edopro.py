@@ -8,7 +8,8 @@ DEPLOYMENT_DIR = "../ygo-jj-edopro-lflists/"
 
 ACTIVE_LISTS = {
     "jj-2017-p1",
-    "jj-2018-preliminary",
+    "jj-2017-p2",
+    "jj-2018-p0",
 }
 
 

@@ -33,6 +33,7 @@ def emptyLfList():
 def parseChangeFile(cardDb, path):
     parser = configparser.ConfigParser(
         allow_no_value=True,
+        delimiters=("="),
         comment_prefixes=None,
     )
 
