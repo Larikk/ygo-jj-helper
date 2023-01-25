@@ -1,6 +1,8 @@
 from jjpy.carddb.carddb import CardDB
 from . import common
 
+CURRENT_BANLIST = "jj-2017-p2"
+
 types = [
     "normal",
     "pendulum-normal",
@@ -108,12 +110,27 @@ def mapBanlist(banlist):
     return result
 
 
+def getIndexOfCurrentBanlist(banlists):
+    for i, banlist in enumerate(banlists):
+        if banlist["name"] == CURRENT_BANLIST:
+            return i
+
+    return None
+
+
 def buildBanlists():
     cardDb = CardDB()
     banlists = common.buildBanlists(cardDb)
 
     if banlists[0]["name"] == "jj-2002-p0":
         banlists = banlists[1:]
+
+    indexOfCurrentBanlist = getIndexOfCurrentBanlist(banlists)
+    upperBound = None
+    if indexOfCurrentBanlist is not None:
+        upperBound = indexOfCurrentBanlist + 1
+
+    banlists = banlists[:upperBound]
 
     return list(map(mapBanlist, banlists))
 
