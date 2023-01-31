@@ -1,7 +1,7 @@
 from jjpy.carddb.carddb import CardDB
 from . import common
 
-CURRENT_BANLIST = "jj-2017-p2"
+CURRENT_BANLIST = "jj-2018-p1"
 
 types = [
     "normal",
