@@ -7,8 +7,7 @@ from . import common
 DEPLOYMENT_DIR = "../ygo-jj-edopro-lflists/"
 
 ACTIVE_LISTS = {
-    "jj-2019-p1",
-    "jj-2020-p0",
+    "jj-2020-p1",
 }
 
 
